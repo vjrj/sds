@@ -35,11 +35,43 @@ It uses au.org.ala.sds.util.SensitiveSpeciesXmlBuilder#generateFromWebservices
 located in this project.
 
 == SDS ==
+The SDS can be configured using an external properties file that is located in the /data/sds/sds-config.properties, this in contrary
+to where we put the configuration files for other apps and should probably be changed. Configuration options are:
+
+species-data - a url (either file:/// or http://) to the xml file that contains all the sensitive species. This defaults
+               to the http://sds.ala.org.au/sensitive-species-data.xml which is the correct value to use in most situations.
+
+category-data - the url to the category xml file, by default http://sds.ala.org.au/sensitivity-categories.xml
+
+zone-data - thw url to the zone xml file , by default http://sds.ala.org.au/sensitivity-zones.xml
+
+species-cache - a boolean value to indicate whether or not to read the sensitive species from the cache file. You can set
+this to true to prevent all the sensitive species needing to be rematched. This will improve startup time for the sensitive
+data service. The disadvantage to this is you will not automatically get the new updates to the sensitive list flowing through.
+
+cache-data - the location in which to cache the sensitive species data, by default /data/sds/species-cache.ser
+
+spatial-layer-ws - the URL to test for intersection of spatial layers. This is used by the SDS if the required layer values
+are not provided in the data.  The biocache will always provide the layer information to prevent WS bottleneck. The default
+value for the property is http://spatial.ala.org.au/layers-service/intersect/
+
+namematching-index - The location to the name matching index. The SDS uses the name matching index to ensure that synonyms
+to sensitive species are correctly determined. This property is only used by the Tests and sds-webapp2.  When you construct
+your sensitive data service you will need to an ALASearcher to be used:
+au.org.ala.sds.SensitiveSpeciesFinderFactory#getSensitiveSpeciesFinder(String dataUrl, ALANameSearcher nameSearcher).  The
+default value for this is /data/lucene/namematching_v13 which should be overridden with the correct value.
+
+list-url - the URL to the list tool that is used to generate the species xml file, by default http://lists.ala.org.au
+
+flag-rules - a CSV value of source fields that are used as a flag rule for the plant pest rules. This is very half baked
+because there was never any indication of what the flag would be called etc.  As there are no flag rules currently provided
+this option can be safely ignored.
+
 There are multiple entry points into the SDS to test for sensitivity. You can either use the SensitiveDataService to automatcially
-handle the determination of sebsitivity and application of the rules.  OR you can generate your own SensitiveSpeciesFinder
+handle the determination of sensitivity and application of the rules.  OR you can generate your own SensitiveSpeciesFinder
 and handle the validation yourself via the ValidationService.
 
-It is probably easiest to use the SensitiveDataService#testMapDetails methods. They a map of darwinCoreTerms and return a
+It is probably easiest to use the SensitiveDataService#testMapDetails methods. They take a map of darwinCoreTerms and return a
 ValidationOutcome. The validation Outcome contains whether or not the details were considered sensitive and a map of values
 to use instead of the supplied values. It will also contain error reports and emails that need to be sent as notifications
 in a plant pest situation.
@@ -114,3 +146,8 @@ lists and updated contacts.
 
 === PLANT_PEST RULES IMPLEMENTATION ===
 
+The Plant Pest rules are implemented using Drools, a rules based engine. The Rules are defined in drl files that are
+located in the src/resources directory.  The category to which a sensitive species belongs dictates which rule is applied.
+
+The rules will determine whether or not a record can be loaded, the email alerts that need to be sent and the warning
+messages that should be displayed.
