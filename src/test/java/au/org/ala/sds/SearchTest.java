@@ -14,16 +14,13 @@
  ***************************************************************************/
 package au.org.ala.sds;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import au.org.ala.names.search.ALANameSearcher;
 import au.org.ala.sds.model.SensitiveTaxon;
 import au.org.ala.sds.util.Configuration;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  *
@@ -31,50 +28,39 @@ import au.org.ala.sds.util.Configuration;
  */
 public class SearchTest {
 
-//    static DataSource dataSource;
     static ALANameSearcher nameSearcher;
     static SensitiveSpeciesFinder finder;
 
     @BeforeClass
     public static void runOnce() throws Exception {
-//        dataSource = new BasicDataSource();
-//        ((BasicDataSource) dataSource).setDriverClassName("com.mysql.jdbc.Driver");
-//        ((BasicDataSource) dataSource).setUrl("jdbc:mysql://localhost/portal");
-//        ((BasicDataSource) dataSource).setUsername("root");
-//        ((BasicDataSource) dataSource).setPassword("password");
-
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
-//        finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder(dataSource, cbIndexSearch);
-        //finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder("file:///data/sds/sensitive-species.xml", cbIndexSearch);
         String uri = nameSearcher.getClass().getClassLoader().getResource("sensitive-species.xml").toURI().toString();
         finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder(uri, nameSearcher, true);
     }
 
     @Test
-    public void lookup() {
+    public void lookupRufus() {
         SensitiveTaxon ss = finder.findSensitiveSpecies("Macropus rufus");
         assertNull(ss);
+    }
 
-        ss = finder.findSensitiveSpecies("Crex crex");
+    @Test
+    public void lookupCrex() {
+        SensitiveTaxon ss = finder.findSensitiveSpecies("Crex crex");
         assertNotNull(ss);
+    }
 
-        ss = finder.findSensitiveSpeciesByLsid("urn:lsid:biodiversity.org.au:afd.taxon:1365807d-927b-4219-97bf-7e619afa5f72");
+    @Test
+    public void lookupMitchellsByLsid() {
+        SensitiveTaxon ss = finder.findSensitiveSpeciesByLsid("urn:lsid:biodiversity.org.au:afd.taxon:1365807d-927b-4219-97bf-7e619afa5f72");
         assertNotNull(ss);
-        assertEquals(ss.getTaxonName(), "Lophochroa leadbeateri");
-        //NC 2013-04-10: This species does not exist in the current SDS lists
-        //ss = finder.findSensitiveSpecies("Anigozanthos humilis subsp. Badgingarra (SD Hopper 7114)");
-        //assertNotNull(ss);
+        assertEquals("Lophochroa leadbeateri", ss.getTaxonName());
+    }
 
-        ss = finder.findSensitiveSpecies("Cacatua leadbeateri");
+    @Test
+    public void lookupMitchells() {
+        SensitiveTaxon ss = finder.findSensitiveSpecies("Cacatua leadbeateri");
         assertNotNull(ss);
-        assertEquals(ss.getTaxonName(), "Lophochroa leadbeateri");
-
-        //NC 2013-04-10: This species does not exist in the current SDS lists
-        //ss = finder.findSensitiveSpecies("Dendrobium speciosum subsp. hillii");
-        //assertNotNull(ss);
-
-        //NC 2013-04-10: This species does not exist in the current SDS lists
-        //ss = finder.findSensitiveSpecies("Thelymitra nuda");
-        //assertNotNull(ss);
+        assertEquals("Lophochroa leadbeateri", ss.getTaxonName());
     }
 }

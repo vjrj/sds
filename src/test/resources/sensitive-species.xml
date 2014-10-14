@@ -21,16 +21,13 @@
             <conservationInstance category="EN" authority="Tas DPIPWE" dataResourceId="dr491" zone="TAS" generalisation="WITHHOLD" />
         </instances>
     </sensitiveSpecies>
-    <sensitiveSpecies name="Lophochroa leadbeateri" family="Cacatuidae" rank="SPECIES" commonName="Major Mitchell's Cockatoo">
+    <sensitiveSpecies name="Lophochroa leadbeateri" family="Cacatuidae" rank="SPECIES" guid="urn:lsid:biodiversity.org.au:afd.taxon:1365807d-927b-4219-97bf-7e619afa5f72" commonName="Major Mitchell's Cockatoo">
         <instances>
             <conservationInstance category="EN" authority="Birds Australia" dataResourceId="dr494" zone="AUS" generalisation="10km" />
-            <conservationInstance category="EN" authority="Vic DSE" dataResourceId="dr490" zone="VIC" generalisation="10km" />
-        </instances>
-    </sensitiveSpecies>
-    <sensitiveSpecies name="Cacatua leadbeateri" family="Psittacidae" rank="SPECIES" commonName="Major Mitchell's Cockatoo">
-        <instances>
-            <conservationInstance category="VU" authority="NSW OEH" dataResourceId="dr487" zone="NSW" reason="Risk of egg collection and nest disturbance" remarks="TSC Status V Vulnerable, OEH Category 2" generalisation="10km"/>
-            <conservationInstance category="SP" authority="WA DEC" dataResourceId="dr467" zone="WA" generalisation="10km"/>
+            <conservationInstance category="2" authority="NSW OEH" dataResourceId="dr487" generalisation="10km" zone="NSW" />
+            <conservationInstance category="C2" authority="SA DEWNR" dataResourceId="dr884" generalisation="10km" zone="SA" />
+            <conservationInstance category="EN" authority="Vic DSE" dataResourceId="dr490" generalisation="10km" zone="VIC" />
+            <conservationInstance category="SP" authority="WA DEC" dataResourceId="dr467" generalisation="10km" zone="WA" />
         </instances>
     </sensitiveSpecies>
     <sensitiveSpecies name="Diuris disposita" family="Orchidaceae" rank="SPECIES" commonName="Willawarrin Doubletail">

@@ -56,7 +56,7 @@ public class Configuration {
     }
 
     public String getNameMatchingIndex() {
-        return config.getProperty("namematching-index", "/data/lucene/namematching_v13");
+        return config.getProperty("namematching-index", "/data/lucene/namematching");
     }
 
     public String getListToolUrl(){

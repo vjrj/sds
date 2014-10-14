@@ -3,25 +3,19 @@
  */
 package au.org.ala.sds.dao;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-
+import au.org.ala.sds.model.*;
 import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 
-import au.org.ala.sds.model.ConservationInstance;
-import au.org.ala.sds.model.PlantPestInstance;
-import au.org.ala.sds.model.SensitiveTaxon;
-import au.org.ala.sds.model.SensitivityCategoryFactory;
-import au.org.ala.sds.model.SensitivityInstance;
-import au.org.ala.sds.model.SensitivityZoneFactory;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -62,6 +56,11 @@ public class SensitiveSpeciesXmlDao implements SensitiveSpeciesDao {
             SensitiveTaxon ss = new SensitiveTaxon(name, rank);
             ss.setFamily(family);
             ss.setCommonName(commonName);
+            if(sse.getAttributeValue("guid") != null){
+                ss.setLsid(sse.getAttributeValue("guid"));
+            } else if(sse.getAttributeValue("lsid") != null){
+                ss.setLsid(sse.getAttributeValue("lsid"));
+            }
 
             Element instances = sse.getChild("instances");
             List instanceList = instances.getChildren();
