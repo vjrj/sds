@@ -1,15 +1,12 @@
 package au.org.ala.sds.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
+import au.org.ala.sds.validation.FactCollection;
+import org.junit.Test;
 
 import java.util.Date;
 import java.util.HashMap;
 
-import org.junit.Test;
-
-import au.org.ala.sds.validation.FactCollection;
+import static org.junit.Assert.*;
 
 
 public class DateHelperTest {
@@ -44,15 +41,16 @@ public class DateHelperTest {
     public void parseDateTest() {
         Date date = DateHelper.parseDate("1846");
         assertEquals(DateHelper.formattedIso8601Date(date), "1846-01-01");
-
         date = DateHelper.parseDate("1905-06");
         assertEquals(DateHelper.formattedIso8601Date(date), "1905-06-01");
 
         try {
             date = DateHelper.parseDate("2011-11-31");
+            System.out.println(date);
             fail("parseDate() should have thrown an exception");
         } catch (Exception e) {
-            assert(e instanceof IllegalArgumentException && e.getMessage().equals("Date " + date + " cannot be parsed"));
+            assert(e instanceof java.lang.IllegalArgumentException);
+            assert(e.getMessage().equalsIgnoreCase("Date 2011-11-31 cannot be parsed"));
         }
     }
 
