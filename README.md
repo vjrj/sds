@@ -100,7 +100,7 @@ values can be provided under the correct authority.
 ### PLANT_PEST RULES THEORY ###
 There are 10 categories of plant pest rules that have been defined in <TO DO LINK TO PDF doc>.
 
-* Category 1 - Not known to occur in Australia - supplied by:
+* **Category 1** - Not known to occur in Australia - supplied by:
   * http://lists.ala.org.au/speciesListItem/listAuth/dr945
   * http://lists.ala.org.au/speciesListItem/listAuth/dr946
   * http://lists.ala.org.au/speciesListItem/listAuth/dr873
@@ -111,18 +111,18 @@ may be a catch all rule that should be applied only if no other rules are matche
 PlantPestNotKnownInAustraliaTest to test this, it currently fails. We were waiting to confirm that this is the case before
 making the changes in the SDS.
 
-* Category 2 - Pest absent due to eradication - Currently no lists available. This is an action item for Ian from the APPD
+* **Category 2** - Pest absent due to eradication - Currently no lists available. This is an action item for Ian from the APPD
 meeting on the 30/01/2014
 
-* Category 3 - Pest present under eradication - Currently no lists available. This is an action item for Ian from the APPD
+* **Category 3** - Pest present under eradication - Currently no lists available. This is an action item for Ian from the APPD
 meeting on the 30/01/2014
 
-* Category 4 - Pest present subject to official control - Currently no lists available. This is an action item for Ian from the APPD
+* **Category 4** - Pest present subject to official control - Currently no lists available. This is an action item for Ian from the APPD
 meeting on the 30/01/2014
 
-* Category 5 - In quarantine or other plant health zones - Currently only implemented for Bactrocera tryoni.
+* **Category 5** - In quarantine or other plant health zones - Currently only implemented for Bactrocera tryoni.
 
-* Category 6 - Notifiable pests according to State or Territory legislation - supplied by
+* **Category 6** - Notifiable pests according to State or Territory legislation - supplied by
 ACT - http://lists.ala.org.au/speciesListItem/listAuth/dr947
 NSW - http://lists.ala.org.au/speciesListItem/listAuth/dr877
 NT - http://lists.ala.org.au/speciesListItem/listAuth/dr878
@@ -132,23 +132,23 @@ TAS - http://lists.ala.org.au/speciesListItem/listAuth/dr881
 VIC - http://lists.ala.org.au/speciesListItem/listAuth/dr882
 WA - http://lists.ala.org.au/speciesListItem/listAuth/dr883
 
-* Category 7 - Absent interception only - partially implemented based on flag in record but will not be fully supported because
+* **Category 7** - Absent interception only - partially implemented based on flag in record but will not be fully supported because
 it is too difficult for APPD to generate lists.
 
-* Category 8 - Transient non actionable - it is implemented as per the specification but there is no list available. There
+* **Category 8** - Transient non actionable - it is implemented as per the specification but there is no list available. There
 is no plan for APPD to generate a list in the near future. It would require a specific project to generate the list.
 
-* Category 9 - Exotic Biological Control Agent - it is implemented as per the rule. Currently no lists available. This is an
+* **Category 9** - Exotic Biological Control Agent - it is implemented as per the rule. Currently no lists available. This is an
 action item for Ian from the APPD action item for Ian from the APPD
 
-* Category 10 - Identification to Genus or higher taxon - it is implemented. Currently no lists available.
+* **Category 10** - Identification to Genus or higher taxon - it is implemented. Currently no lists available.
 
 These categories has specific notification requirements as per <TO DO link to XLSX document>.  These are not implemented
 within the SDS. The SDS will provide the necessary messages it will be up to the individual components to perform the required
 actions. At the moment the biocache DOES NOT handle the notifications correctly.  We were waiting for the SDS to have complete
 lists and updated contacts.
 
-### PLANT_PEST RULES IMPLEMENTATION ###
+### PLANT PEST RULES IMPLEMENTATION ###
 
 The Plant Pest rules are implemented using Drools, a rules based engine. The Rules are defined in drl files that are
 located in the src/resources directory.  The category to which a sensitive species belongs dictates which rule is applied.
