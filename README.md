@@ -88,8 +88,8 @@ have one data resource provided list and this is http://lists.ala.org.au/species
 all the Bird Life data resource; dr359, dr570 and dr571.
 
 When are species is identified as a conservation the SDS:
-1. Generalises the coordinates based on the configured amount. Populating the dataGeneralizations and/or informationWithheld
-properties in the return map.
+1. Generalises the coordinates based on the configured amount. Populating the [dataGeneralizations](http://rs.tdwg.org/dwc/terms/dataGeneralizations) 
+and/or [informationWithheld](http://rs.tdwg.org/dwc/terms/informationWithheld) properties in the return map.
 
 2. It removes values in the locationRemarks, verbatimLatitude,verbatimLongitude, locality, verbatimCoordinates and footprintWKT
 fields.
@@ -123,14 +123,14 @@ meeting on the 30/01/2014
 * **Category 5** - In quarantine or other plant health zones - Currently only implemented for Bactrocera tryoni.
 
 * **Category 6** - Notifiable pests according to State or Territory legislation - supplied by
-  * ACT - http://lists.ala.org.au/speciesListItem/listAuth/dr947
-  * NSW - http://lists.ala.org.au/speciesListItem/listAuth/dr877
-  * NT - http://lists.ala.org.au/speciesListItem/listAuth/dr878
-  * QLD - http://lists.ala.org.au/speciesListItem/listAuth/dr879
-  * SA - http://lists.ala.org.au/speciesListItem/listAuth/dr880
-  * TAS - http://lists.ala.org.au/speciesListItem/listAuth/dr881
-  * VIC - http://lists.ala.org.au/speciesListItem/listAuth/dr882
-  * WA - http://lists.ala.org.au/speciesListItem/listAuth/dr883
+  * [ACT](http://lists.ala.org.au/speciesListItem/listAuth/dr947)
+  * [NSW](http://lists.ala.org.au/speciesListItem/listAuth/dr877)
+  * [NT](http://lists.ala.org.au/speciesListItem/listAuth/dr878)
+  * [QLD](http://lists.ala.org.au/speciesListItem/listAuth/dr879)
+  * [SA](http://lists.ala.org.au/speciesListItem/listAuth/dr880)
+  * [TAS](http://lists.ala.org.au/speciesListItem/listAuth/dr881)
+  * [VIC](http://lists.ala.org.au/speciesListItem/listAuth/dr882)
+  * [WA](http://lists.ala.org.au/speciesListItem/listAuth/dr883)
 
 * **Category 7** - Absent interception only - partially implemented based on flag in record but will not be fully supported because
 it is too difficult for APPD to generate lists.
