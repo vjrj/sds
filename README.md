@@ -1,4 +1,4 @@
-# sensitive-species   [![Build Status](https://travis-ci.org/AtlasOfLivingAustralia/sensitive-species.svg?branch#master)](https://travis-ci.org/AtlasOfLivingAustralia/sensitive-species)
+# sds   [![Build Status](https://travis-ci.org/AtlasOfLivingAustralia/sds.svg?branch#master)](https://travis-ci.org/AtlasOfLivingAustralia/sds)
 
 
 The sensitive data service manages sensitivity concerns in the conservation and biosecurity areas.
