@@ -102,6 +102,10 @@ public class SensitiveTaxon implements Serializable, Comparable<SensitiveTaxon> 
         if (this.acceptedTaxon == null) {
             return this.instances;
         } else {
+            //avoid stackoverflow from bad data
+            if(this.acceptedTaxon.getLsid() == null || this.acceptedTaxon.getLsid().equals(this.getLsid())){
+                return this.instances;
+            }
             return this.acceptedTaxon.getInstances();
         }
     }
