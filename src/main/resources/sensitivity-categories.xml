@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sensitivity-categories>
+    <sensitivity-category id="sensitive species" name="Sensitive species" type="Conservation"/>
+    <sensitivity-category id="High" name="ACT high conservation sensitivity" type="Conservation"/>
+    <sensitivity-category id="Very High" name="ACT very high conservation sensitivity" type="Conservation"/>
     <sensitivity-category id="NE" name="Not Evaluated" type="Conservation"/>
     <sensitivity-category id="DD" name="Data Deficient" type="Conservation"/>
     <sensitivity-category id="LC" name="Least Concern" type="Conservation"/>
