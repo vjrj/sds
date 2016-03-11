@@ -18,8 +18,6 @@ public class ConservationInstance extends SensitivityInstance implements Seriali
     /**
      * @param category
      * @param authority
-     * @param fromDate
-     * @param toDate
      * @param zone
      * @param generalisation
      */

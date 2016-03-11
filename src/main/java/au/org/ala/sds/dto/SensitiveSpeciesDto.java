@@ -33,10 +33,7 @@ public class SensitiveSpeciesDto {
     private String locationGeneralisation;
     private String sensitivityCategory;
 
-    public SensitiveSpeciesDto() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    public SensitiveSpeciesDto() {}
 
     public int getId() {
         return id;

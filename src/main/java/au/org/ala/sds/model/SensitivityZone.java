@@ -52,11 +52,15 @@ public class SensitivityZone implements Serializable {
 
     private final String id;
     private final String name;
+    private final String layerId;   //the layer used to identify a layer
+    private final String[] pids;    //persistent IDs of objects in the layer service
     private final ZoneType type;
 
-    public SensitivityZone(String id, String name, ZoneType type) {
+    public SensitivityZone(String id, String name, String layerId, String[] pids, ZoneType type) {
         this.id = id;
         this.name = name;
+        this.layerId = layerId;
+        this.pids = pids;
         this.type = type;
     }
 
@@ -68,6 +72,14 @@ public class SensitivityZone implements Serializable {
         return name;
     }
 
+    public String getLayerId() {
+        return layerId;
+    }
+
+    public String[] getPids() {
+        return pids;
+    }
+
     public ZoneType getType() {
         return type;
     }
@@ -77,6 +89,7 @@ public class SensitivityZone implements Serializable {
         return new HashCodeBuilder(17, 37).
             append(this.id).
             append(this.name).
+            append(this.layerId).
             append(this.type).
             toHashCode();
     }
@@ -94,7 +107,7 @@ public class SensitivityZone implements Serializable {
 
     @Override
     public String toString() {
-        return this.id;
+        return this.id + ", Name: " + this.getName() + ", Zone: " + getType();
     }
 
     public String toJson() {
@@ -155,20 +168,27 @@ public class SensitivityZone implements Serializable {
         List<SensitivityZone> zoneList = new ArrayList<SensitivityZone>();
         String[] zones = StringUtils.split(StringUtils.substringBetween(string, "[", "]"), ',');
         for (String zone : zones) {
-            zoneList.add(SensitivityZoneFactory.getZone(StringUtils.strip(zone)));
+            SensitivityZone sz = SensitivityZoneFactory.getZone(StringUtils.strip(zone));
+            if(sz != null){
+                zoneList.add(sz);
+//            } else {
+//                System.err.println("Unrecognised zone:"  + zone);
+            }
         }
         return zoneList;
     }
 
-    public static String getState(List<SensitivityZone> zones) {
+    public static String getZoneDescriptions(List<SensitivityZone> zones) {
+        StringBuffer buff = new StringBuffer();
         for (SensitivityZone sz : zones) {
-            if (sz.getType().equals(ZoneType.STATE)) {
-                return sz.getId();
-            } else if (sz.getId().equals(NOTAUS)) {
-                return sz.getName();
+            System.out.println("Adding to zone description:"  + sz);
+            if (sz != null) {
+                if (buff.length() > 0) {
+                    buff.append(", ");
+                }
+                buff.append(sz.getName());
             }
         }
-        return "???";
+        return buff.toString();
     }
-
 }

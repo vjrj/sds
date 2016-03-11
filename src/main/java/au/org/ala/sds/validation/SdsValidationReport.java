@@ -19,7 +19,6 @@ public class SdsValidationReport implements ValidationReport, Serializable {
     private String category,assertion;
 
     public SdsValidationReport(SensitiveTaxon species) {
-        super();
         this.species = species;
         this.messages = new ArrayList<Message>();
     }
@@ -69,16 +68,9 @@ public class SdsValidationReport implements ValidationReport, Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-//        sb.append(species.getTaxonName());
-//        if (StringUtils.isNotBlank(species.getCommonName())) {
-//            sb.append(" (").append(species.getCommonName()).append(")");
-//        }
-//        sb.append("\n");
         for (Message message : messages) {
             sb.append(message).append("\n");
         }
         return sb.toString();
     }
-
-
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
+ * A selection of key value pairs describing an occurrence.
  *
  * @author Peter Flemming (peter.flemming@csiro.au)
  */

@@ -66,7 +66,7 @@ public class PlantPestUnderEradicationTest {
         facts.put(FactCollection.DECIMAL_LATITUDE_KEY, latitude);
         facts.put(FactCollection.DECIMAL_LONGITUDE_KEY, longitude);
 
-        facts.put(GeoLocationHelper.LGA_BOUNDARIES_LAYER,"Emerald");
+        facts.put(GeoLocationHelper.LGA_BOUNDARIES_LAYER, "Emerald");
         ValidationService service = ServiceFactory.createValidationService(ss);
         ValidationOutcome outcome = service.validate(facts);
 

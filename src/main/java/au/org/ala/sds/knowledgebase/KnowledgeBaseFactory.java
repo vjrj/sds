@@ -38,18 +38,14 @@ public class KnowledgeBaseFactory {
         rules.put(SensitivityCategory.PLANT_PEST_NON_TRANSIENT, "PBC8-PlantPestTransient.drl");
         rules.put(SensitivityCategory.PLANT_PEST_EXOTIC_BIOLOGICAL_CONTROL_AGENT, "PBC9-ExoticBiologicalControlAgent.drl");
         rules.put(SensitivityCategory.PLANT_PEST_HIGHER_TAXON_ID, "PBC10-IdentificationToHigherTaxon.drl");
-//        //attempt to create all on a single thread
-//        for(String drl : rules.values()){
-//            logger.warn("Prebuilding " + drl);
-//            //KnowledgeBuilder builder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-//            //builder.add(ResourceFactory.newClassPathResource(drl), ResourceType.DRL);
-//        }
     }
+
     static private Map<SensitivityCategory, KnowledgeBase> kbs = new HashMap<SensitivityCategory, KnowledgeBase>();
 
     public static KnowledgeBase getKnowledgeBase(SensitivityCategory category) {
         KnowledgeBase knowledgeBase;
-        //NQ 20140318 : It is necessary to synchronise to prevent: Exception in thread "Thread-5" java.lang.LinkageError: au/org/ala/sds/validation/Rule_In_Australia_bebc6a80b9c9410ba9c5d297087be8cc
+        //NQ 20140318 : It is necessary to synchronise to prevent:
+        // Exception in thread "Thread-5" java.lang.LinkageError: au/org/ala/sds/validation/Rule_In_Australia_bebc6a80b9c9410ba9c5d297087be8cc
         synchronized (lock){
             if ((knowledgeBase = kbs.get(category)) == null) {
                 logger.debug("Instantiating KnowledgeBase '" + rules.get(category.getId()) + "'");

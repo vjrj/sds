@@ -14,8 +14,8 @@ import au.org.ala.sds.model.SensitivityZone;
  */
 public class GeneralisedLocationFactory {
 
-    public static GeneralisedLocation getGeneralisedLocation(String latitude, String longitude, List<SensitivityInstance> instances, List<SensitivityZone> zones) {
+    public static GeneralisedLocation getGeneralisedLocation(
+            String latitude, String longitude, List<SensitivityInstance> instances, List<SensitivityZone> zones) {
         return new GeneralisedLocation(latitude, longitude, instances, zones);
     }
-
 }

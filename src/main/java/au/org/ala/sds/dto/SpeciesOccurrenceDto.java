@@ -27,10 +27,7 @@ public class SpeciesOccurrenceDto {
     private String latLongPrecision;
     private String basisOfRecord;
     
-    public SpeciesOccurrenceDto() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    public SpeciesOccurrenceDto() {}
 
     public int getId() {
         return id;

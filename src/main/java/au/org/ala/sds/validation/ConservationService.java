@@ -14,12 +14,15 @@ import au.org.ala.sds.model.SensitivityZone;
 import au.org.ala.sds.util.GeneralisedLocation;
 import au.org.ala.sds.util.GeneralisedLocationFactory;
 import au.org.ala.sds.util.ValidationUtils;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Peter Flemming (peter.flemming@csiro.au)
  */
 public class ConservationService implements ValidationService {
+
+    protected static final Logger logger = Logger.getLogger(ConservationService.class);
 
     //TODO perhaps a better way would be to populate this from the collectory
     private static final List<String> BIRDS_AUSTRALIA = Arrays.asList(new String[]{"dr359", "dr570", "dr571"});
@@ -28,18 +31,19 @@ public class ConservationService implements ValidationService {
     private final SensitiveTaxon taxon;
 
     public ConservationService(SensitiveTaxon taxon, ReportFactory reportFactory) {
-        super();
         this.reportFactory = reportFactory;
         this.taxon = taxon;
     }
 
     /**
+     * Validate an occurrence return a validation outcome.
      *
-     * @param biocacheData a map of biocache information
+     * @param occurrence a map of biocache information
      * @return
      */
-    public ValidationOutcome validate(Map<String, String> biocacheData) {
-        FactCollection facts = new FactCollection(biocacheData);
+    public ValidationOutcome validate(Map<String, String> occurrence) {
+
+        FactCollection facts = new FactCollection(occurrence);
         ValidationReport report = reportFactory.createValidationReport(taxon);
 
         // Validate location
@@ -53,7 +57,9 @@ public class ConservationService implements ValidationService {
         // Assemble parameters for location generalisation
         String latitude = facts.get(FactCollection.DECIMAL_LATITUDE_KEY);
         String longitude = facts.get(FactCollection.DECIMAL_LONGITUDE_KEY);
-        List<SensitivityZone> zones = SensitivityZone.getListFromString(facts.get(FactCollection.ZONES_KEY));
+        String zonesString = facts.get(FactCollection.ZONES_KEY);  //this is a serialised list []
+
+        List<SensitivityZone> zones = SensitivityZone.getListFromString(zonesString);
         List<SensitivityInstance> instances = taxon.getInstancesForZones(zones);
 
         // Check data provider (Birds Australia generalisation only happens for BA occurrences)
@@ -68,18 +74,24 @@ public class ConservationService implements ValidationService {
         // Assemble result map
         Map<String, Object> results = new HashMap<String, Object>();
         Map<String, String> originalSensitiveValues = new HashMap<String, String>();
+
         if (gl.isSensitive()) {
             StringBuilder extra = new StringBuilder();
-            for(SensitivityInstance si :gl.getSensitivityInstances()){
-                if(extra.length()>0)
+            for(SensitivityInstance si : gl.getSensitivityInstances()){
+                if(extra.length() > 0) {
                     extra.append("\t");
-                else
+                } else if(si != null) {
                     extra.append("\n");
-                extra.append("Sensitive in ")
-                      .append(si.getZone())
-                      .append(" [")
-                      .append(si.getCategory().getValue())
-                      .append(", ").append(si.getAuthority()).append("]");
+                    if(si != null) {
+                        extra.append("Sensitive in ")
+                            .append(si.getZone());
+                    }
+                    if(si != null && si.getCategory() != null && si.getAuthority() != null){
+                        extra.append(" [")
+                            .append(si.getCategory().getValue())
+                            .append(", ").append(si.getAuthority()).append("]");
+                    }
+                }
             }
             String extraDesc = extra.toString();
             outcome.setSensitive(true);
@@ -90,13 +102,13 @@ public class ConservationService implements ValidationService {
             results.put("generalisationInMetres", gl.getGeneralisationInMetres());
             results.put("dataGeneralizations", gl.getDescription() + ". " + extraDesc);
 
-            emptyValueIfNecessary("locationRemarks", biocacheData, originalSensitiveValues, results);
-            emptyValueIfNecessary("verbatimLatitude", biocacheData, originalSensitiveValues, results);
-            emptyValueIfNecessary("verbatimLongitude", biocacheData, originalSensitiveValues, results);
-            emptyValueIfNecessary("locality", biocacheData, originalSensitiveValues, results);
-            emptyValueIfNecessary("verbatimLocality", biocacheData, originalSensitiveValues, results);
-            emptyValueIfNecessary("verbatimCoordinates", biocacheData, originalSensitiveValues, results);
-            emptyValueIfNecessary("footprintWKT", biocacheData, originalSensitiveValues, results);
+            emptyValueIfNecessary("locationRemarks", occurrence, originalSensitiveValues, results);
+            emptyValueIfNecessary("verbatimLatitude", occurrence, originalSensitiveValues, results);
+            emptyValueIfNecessary("verbatimLongitude", occurrence, originalSensitiveValues, results);
+            emptyValueIfNecessary("locality", occurrence, originalSensitiveValues, results);
+            emptyValueIfNecessary("verbatimLocality", occurrence, originalSensitiveValues, results);
+            emptyValueIfNecessary("verbatimCoordinates", occurrence, originalSensitiveValues, results);
+            emptyValueIfNecessary("footprintWKT", occurrence, originalSensitiveValues, results);
 
             if (gl.getGeneralisationInMetres().equals("") && gl.getGeneralisedLatitude() != null && gl.getGeneralisedLatitude().equals("")) {
                 results.put("informationWithheld", "Location co-ordinates have been withheld in accordance with " + facts.get(FactCollection.STATE_PROVINCE_KEY) + " sensitive species policy");
@@ -107,9 +119,9 @@ public class ConservationService implements ValidationService {
 
         // Handle Birds Australia occurrences
         if (facts.get("dataResourceUid") != null && BIRDS_AUSTRALIA.contains(facts.get("dataResourceUid"))) {
-            emptyValueIfNecessary("eventID", biocacheData, originalSensitiveValues, results);
-            emptyValueIfNecessary("day", biocacheData, originalSensitiveValues, results);
-            emptyValueIfNecessary("eventDate",biocacheData, originalSensitiveValues, results);
+            emptyValueIfNecessary("eventID", occurrence, originalSensitiveValues, results);
+            emptyValueIfNecessary("day", occurrence, originalSensitiveValues, results);
+            emptyValueIfNecessary("eventDate", occurrence, originalSensitiveValues, results);
             results.put("informationWithheld", "The eventID and day information has been withheld in accordance with Birds Australia data policy");
         }
 
@@ -130,5 +142,4 @@ public class ConservationService implements ValidationService {
     public void setReportFactory(ReportFactory reportFactory) {
         this.reportFactory = reportFactory;
     }
-
 }

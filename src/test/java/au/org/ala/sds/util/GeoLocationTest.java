@@ -143,12 +143,11 @@ public class GeoLocationTest {
         zones = GeoLocationHelper.getZonesContainingPoint("-36.91657", "145.36814");
         assertTrue(zones.contains(SensitivityZoneFactory.getZone(SensitivityZone.PIZVICUPT)));
         assertTrue(zones.contains(SensitivityZoneFactory.getZone(SensitivityZone.VIC)));
-
     }
 
     @Test
     public void layersList() {
-        assertTrue(GeoLocationHelper.getGeospatialLayers().containsAll(Arrays.asList(
+        assertTrue(Configuration.getInstance().getGeospatialLayers().containsAll(Arrays.asList(
                 GeoLocationHelper.COASTAL_WATERS_LAYER,
                 GeoLocationHelper.LGA_BOUNDARIES_LAYER,
                 GeoLocationHelper.TSPZ_LAYER,

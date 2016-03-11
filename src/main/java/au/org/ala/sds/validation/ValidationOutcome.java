@@ -14,23 +14,20 @@ public class ValidationOutcome {
     private boolean valid;
     private boolean sensitive = false;
     private boolean loadable = false;
-    private boolean controlledAccess=false;
+    private boolean controlledAccess = false;
     private ValidationReport report;
     private Map<String, Object> result;
 
     public ValidationOutcome(){
-        super();
         this.valid = true;
     }
 
     public ValidationOutcome(ValidationReport report) {
-        super();
         this.report = report;
         this.valid = true;
     }
 
     public ValidationOutcome(ValidationReport report, boolean valid) {
-        super();
         this.report = report;
         this.valid = valid;
     }

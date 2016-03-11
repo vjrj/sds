@@ -35,12 +35,16 @@ import java.util.Map;
  * @author Natasha Carter (natasha.carter@csiro.au)
  */
 public class SpeciesListUtil {
+
     final static Logger logger = Logger.getLogger(SpeciesListUtil.class);
+
     public static Map<String,SDSSpeciesListDTO> getSDSLists(){
-        Map<String,SDSSpeciesListDTO> map = new java.util.HashMap<String,SDSSpeciesListDTO>();
-        try{
+
+        Map<String, SDSSpeciesListDTO> map = new java.util.HashMap<String, SDSSpeciesListDTO>();
+        try {
+            logger.info("Loading lists from " + Configuration.getInstance().getListToolUrl());
             //get the details about the species lists that are considered part of the SDS
-            URL url = new URL(Configuration.getInstance().getListToolUrl()+"/ws/speciesList?isSDS=eq:true");
+            URL url = new URL(Configuration.getInstance().getListToolUrl() + "/ws/speciesList?isSDS=eq:true");
             //retrieve the lists from the json returned
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -49,18 +53,28 @@ public class SpeciesListUtil {
             InputStream inStream = connection.getInputStream();
             java.util.Map values = mapper.readValue(inStream, java.util.Map.class);
             if(values.containsKey("lists")){
-               List<Map<String,String>> lists = (List<Map<String,String>>)values.get("lists");
-               for(Map<String,String> lmap : lists){
+               List<Map<String, String>> lists = (List<Map<String, String>>) values.get("lists");
+               for (Map<String, String> lmap : lists){
                    String dataResourceUid = lmap.get("dataResourceUid");
-                   SDSSpeciesListDTO  item = new SDSSpeciesListDTO(dataResourceUid, lmap.get("listName"), lmap.get("region"), lmap.get("authority"), lmap.get("category"), lmap.get("generalisation"),lmap.get("sdsType"),lmap.get("lastUpdated"));
+                   SDSSpeciesListDTO item = new SDSSpeciesListDTO(
+                           dataResourceUid,
+                           lmap.get("listName"),
+                           lmap.get("region"),
+                           lmap.get("authority"),
+                           lmap.get("category"),
+                           lmap.get("generalisation"),
+                           lmap.get("sdsType"),
+                           lmap.get("lastUpdated")
+                   );
                    logger.debug(item);
                    map.put(dataResourceUid, item);
                }
-               logger.debug( lists+ " " +lists.getClass() +" "+lists.get(0).getClass());
+               logger.debug(lists + " " + lists.getClass() + " " + lists.get(0).getClass());
             }
 
-        } catch(Exception e){
-             logger.error("Unable to obtain the list details.",e);
+        } catch (Exception e){
+            e.printStackTrace();
+            logger.error("Unable to obtain the list details.", e);
         }
         return map;
     }
@@ -71,15 +85,18 @@ public class SpeciesListUtil {
      */
     public static List<SDSSpeciesListItemDTO> getSDSListItems(boolean hasMatch){
        try{
-           String suffix = hasMatch? "&guid=isNotNull:guid&sort=guid":"&guid=isNull:guid&sort=rawScientificName";
-           URL url = new URL(Configuration.getInstance().getListToolUrl()+"/ws/speciesListItems?isSDS=eq:true"+suffix);
+           String suffix = hasMatch ? "&guid=isNotNull:guid&sort=guid" : "&guid=isNull:guid&sort=rawScientificName";
+           URL url = new URL(Configuration.getInstance().getListToolUrl() + "/ws/speciesListItems?isSDS=eq:true" + suffix);
            ObjectMapper mapper = new ObjectMapper();
            mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
            URLConnection connection = url.openConnection();
            logger.debug("Looking up location using " + url);
            InputStream inStream = connection.getInputStream();
 
-           java.util.List<SDSSpeciesListItemDTO> values = mapper.readValue(inStream, new TypeReference<List<SDSSpeciesListItemDTO>>() { });
+           java.util.List<SDSSpeciesListItemDTO> values = mapper.readValue(
+                   inStream,
+                   new TypeReference<List<SDSSpeciesListItemDTO>>(){}
+           );
            logger.debug(values);
            return values;
        } catch(Exception e){

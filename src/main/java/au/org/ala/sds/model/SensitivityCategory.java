@@ -61,6 +61,8 @@ public class SensitivityCategory implements Serializable {
     private final String value;
     private final CategoryType type;
 
+    public static final SensitivityCategory DEFAULT_CATEGORY = new SensitivityCategory("Sensitive", "Sensitive", CategoryType.CONSERVATION);
+
     public SensitivityCategory(String id, String value, CategoryType type) {
         this.id = id;
         this.value = value;

@@ -59,4 +59,6 @@ public class SensitiveSpeciesFinder implements Lookup {
         return store.findByName(scientificName) != null;
     }
 
+    public SensitiveTaxonStore getStore(){ return store;}
+
 }

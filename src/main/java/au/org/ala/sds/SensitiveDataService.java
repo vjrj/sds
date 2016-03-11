@@ -38,12 +38,14 @@ import java.util.Map;
  * @author Natasha Carter (natasha.carter@csiro.au)
  */
 public class SensitiveDataService {
-    private KnowledgeBase knowledgeBase;
-    private ReportFactory reportFactory = new SdsReportFactory();
+
     protected static final Logger logger = Logger.getLogger(SensitiveDataService.class);
 
+    private KnowledgeBase knowledgeBase;
+    private ReportFactory reportFactory = new SdsReportFactory();
+
     public ValidationOutcome testMapDetails(SensitiveSpeciesFinder finder,Map<String, String> properties, String scientificName){
-        return testMapDetails(finder,properties,scientificName,null);
+        return testMapDetails(finder, properties, scientificName, null);
     }
 
     /**
@@ -53,32 +55,48 @@ public class SensitiveDataService {
      * @param properties A map of the raw record details. This will allow the SDS to remove any properties that need to be hidden.
      * @param scientificName  The raw scientific name to match on - will only be used if taxon id is null
      * @param taxonId  The guid for the matched scientific name - this prevent superfluous name lookup from occurring.
-     * @return A validation outcome to be used by the client processing. It is up to each client program to perform actions resulting from the outcome.
+     * @return A validation outcome to be used by the client processing. It is up to each client program to perform actions
+     * resulting from the outcome.
      */
-    public ValidationOutcome testMapDetails(SensitiveSpeciesFinder finder,Map<String, String> properties, String scientificName, String taxonId){
+    public ValidationOutcome testMapDetails(SensitiveSpeciesFinder finder, Map<String, String> properties,
+                                            String scientificName, String taxonId){
         //Step 1 apply rules for flags
-        Configuration config = Configuration.getInstance();
+        Configuration config = null;
+        try {
+            //Step 1 apply rules for flags
+            config = Configuration.getInstance();
+        } catch (Exception e){
+            throw new RuntimeException("Problem initialising SDS.");
+        }
+
         for(String rule : config.getFlagRules().split(",")){
             if(StringUtils.isNotBlank(properties.get(rule))){
                 return restrictRecord(properties, rule, scientificName);
             }
         }
+
         //Only continue if no flags were discovered
         //Step 2 extract the sensitive species and validate the service
         //search for a sensitive taxon
         SensitiveTaxon st = null;
-        if(taxonId != null)
+        if(taxonId != null) {
             st = finder.findSensitiveSpeciesByLsid(taxonId);
-        if(st == null && scientificName != null)
+        }
+
+        if(st == null && scientificName != null) {
             st = finder.findSensitiveSpecies(scientificName);
+        }
+
+        //if taxon recognised as a sensitive species, run the validation
         if(st != null){
-            ValidationService service =ServiceFactory.createValidationService(st);
+            ValidationService service = ServiceFactory.createValidationService(st);
             return service.validate(properties);
         }
+
         //species is not sensitive and can be loaded "as is"
         ValidationOutcome vo = new ValidationOutcome();
         vo.setLoadable(true);
-        return null;
+        return vo;
     }
 
     /**
@@ -99,12 +117,5 @@ public class SensitiveDataService {
         Map<String,Object> results=ValidationUtils.restrictForPests(properties);
         vo.setResult(results);
         return vo;
-    }
-    private String constructScientificName(Map<String,String> properties){
-        String value =properties.get(FactCollection.SCIENTIFIC_NAME_KEY);
-        if(value == null)
-            return "";
-        else
-            return value;
     }
 }

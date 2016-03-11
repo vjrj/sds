@@ -27,7 +27,6 @@ import org.apache.log4j.Logger;
 
 import au.org.ala.names.search.ALANameSearcher;
 import au.org.ala.names.search.SearchResultException;
-import au.org.ala.sds.dao.RawOccurrenceDao;
 import au.org.ala.sds.model.SensitiveTaxon;
 import au.org.ala.sds.util.Configuration;
 import au.org.ala.sds.validation.FactCollection;
@@ -43,20 +42,18 @@ public class GeneraliseOccurrenceLocations {
 
     protected static final Logger logger = Logger.getLogger(GeneraliseOccurrenceLocations.class);
 
-    private static RawOccurrenceDao rawOccurrenceDao;
     private static BasicDataSource occurrenceDataSource;
     private static ALANameSearcher nameSearcher;
     private static SensitiveSpeciesFinder sensitiveSpeciesFinder;
 
     public static void main(String[] args) throws Exception {
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
-        sensitiveSpeciesFinder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder("file:///data/sds/sensitive-species.xml", nameSearcher);
+        sensitiveSpeciesFinder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder(
+                "file:///data/sds/sensitive-species.xml", nameSearcher);
         occurrenceDataSource = new BasicDataSource();
         occurrenceDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-//        occurrenceDataSource.setUrl("jdbc:mysql://ala-biocachedb2.vm.csiro.au/portal");
         occurrenceDataSource.setUrl("jdbc:mysql://localhost/portal");
         occurrenceDataSource.setUsername("root");
-//        occurrenceDataSource.setPassword("sun6800");
         occurrenceDataSource.setPassword("password");
         run(args.length == 1 ? args[0] : null);
     }
@@ -141,5 +138,4 @@ public class GeneraliseOccurrenceLocations {
         pst.close();
         conn.close();
     }
-
 }

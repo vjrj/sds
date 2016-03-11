@@ -9,14 +9,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>au.org.ala</groupId>
     <artifactId>sds</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>2.0-SNAPSHOT</version>
     <name>Sensitive Species Lookup API</name>
     <description>Routines to check whether a species is sensitive and to apply data generalisation.</description>
 
     <scm>
-        <developerConnection>scm:svn:https://ala-portal.googlecode.com/svn/trunk/sensitive-species</developerConnection>
+        <developerConnection>scm:svn:https://github.com/atlasoflivingaustralia/sds</developerConnection>
     </scm>
-
 
     <properties>
         <spring.version>3.0.0.RELEASE</spring.version>
@@ -40,12 +39,6 @@
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
             <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.6</version>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>au.org.ala</groupId>
@@ -128,7 +121,12 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
         </dependency>
     </dependencies>

@@ -28,6 +28,7 @@ public class ValidationUtils {
     protected static final Logger logger = Logger.getLogger(ValidationUtils.class);
 
     public static boolean validateLocation(FactCollection facts, ValidationReport report) {
+
         String state = facts.get(FactCollection.STATE_PROVINCE_KEY);
         String decimalLatitude = facts.get(FactCollection.DECIMAL_LATITUDE_KEY);
         String decimalLongitude = facts.get(FactCollection.DECIMAL_LONGITUDE_KEY);
@@ -73,6 +74,7 @@ public class ValidationUtils {
     }
 
     public static boolean validateLocationCoords(FactCollection facts, ValidationReport report) {
+
         String decimalLatitude = facts.get(FactCollection.DECIMAL_LATITUDE_KEY);
         String decimalLongitude = facts.get(FactCollection.DECIMAL_LONGITUDE_KEY);
 
@@ -89,6 +91,7 @@ public class ValidationUtils {
     }
 
     public static String validateName(Map<String, String> facts) {
+
         String scientificName = facts.get(FactCollection.SCIENTIFIC_NAME_KEY);
         if (StringUtils.isNotBlank(scientificName) && !scientificName.equalsIgnoreCase("\\N")) {
             return scientificName;

@@ -28,7 +28,6 @@ public class PlantPestUtils {
     }
     public static String getLocalityFromMapForMessage(Map<String,String> map, List<SensitivityZone> zones){
         return mapGetOrElse(map, "locality", mapGetOrElse(map, GeoLocationHelper.LGA_BOUNDARIES_LAYER, zones.get(0).getName()));
-        //PlantPestUtils.mapGetOrElse($map, "locality", PlantPestUtils.mapGetOrElse($map, GeoLocationHelper.LGA_BOUNDARIES_LAYER,((SensitivityZone)$zones.get(0)).getName()))
     }
 
     public static String getStateFromMapForMessage(Map<String,String> map, List<SensitivityZone> zones){
