@@ -23,7 +23,10 @@ public class Configuration {
 
     private Configuration() throws Exception {
         config = new Properties();
-        File configFile = new File("/data/sds/config/sds-config.properties");
+
+        String configFilePath = System.getProperty("app.config.file", "/data/sds/config/sds-config.properties");
+        logger.info("SDS using configuration from " + configFilePath);
+        File configFile = new File(configFilePath);
         try {
             config.load(new FileInputStream(configFile));
         } catch(IOException e) {
@@ -72,22 +75,6 @@ public class Configuration {
 
     public String getSpatialUrl() {
         return config.getProperty("layers.service.url", "http://spatial.ala.org.au/layers-service") + "/intersect/";
-    }
-
-    public List<String> getSpatialToSample() {
-        if(sampleFields == null){
-            String fieldsToSample = config.getProperty("sample.fields", "NOT_SUPPLIED");
-            if (fieldsToSample.equals("NOT_SUPPLIED")){
-                sampleFields = Configuration.getInstance().getGeospatialLayers();
-            } else {
-                String[] sampleFieldsArray = config.getProperty("sample.fields", "").split(",");
-                sampleFields = new ArrayList<String>();
-                for(String field : sampleFieldsArray){
-                    sampleFields.add(field.trim());
-                }
-            }
-        }
-        return sampleFields;
     }
 
     public String getNameMatchingIndex() {

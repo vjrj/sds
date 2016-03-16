@@ -167,6 +167,6 @@ public class GeoLocationHelper {
     }
 
     private static String getLayersForUri() throws Exception {
-        return StringUtils.join(Configuration.getInstance().getSpatialToSample(), ",");
+        return StringUtils.join(Configuration.getInstance().getGeospatialLayers(), ",");
     }
 }
