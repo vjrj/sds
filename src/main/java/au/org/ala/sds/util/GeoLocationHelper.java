@@ -34,6 +34,14 @@ public class GeoLocationHelper {
     public final static String PIZ_VIC_WHITEBRIDGE_LAYER = "cl965";
     public final static String STATES_TERRITORIES_LAYER ="cl22";
 
+    /**
+     * Retrieves zones
+     *
+     * @param latitude
+     * @param longitude
+     * @return
+     * @throws Exception
+     */
     public static Set<SensitivityZone> getZonesContainingPoint(String latitude, String longitude) throws Exception {
 
         Set<SensitivityZone> zones = new HashSet<SensitivityZone>();
@@ -138,13 +146,8 @@ public class GeoLocationHelper {
 //            } else if (field.equalsIgnoreCase(PIZ_VIC_WHITEBRIDGE_LAYER) && !value.equalsIgnoreCase("n/a")) {
 //                zones.add(SensitivityZoneFactory.getZone(SensitivityZone.PIZVICWHB));
 //            } else if (!value.equalsIgnoreCase("n/a")){
-//
 //                zones.add(new SensitivityZone("", "", SensitivityZone.ZoneType.valueOf("")));
-//
-//
-//
 //            }
-
         }
 
         if (zones.isEmpty()) {

@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.List;
 
+import au.org.ala.sds.SensitiveDataService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -35,7 +36,8 @@ public class ValidationUtils {
 
         Set<SensitivityZone> zones = new HashSet<SensitivityZone>();
 
-        if (state == null) {
+        if (!facts.contains(SensitiveDataService.SAMPLED_VALUES_PROVIDED)) {
+            logger.debug("Performing sampling....");
             if (StringUtils.isNotBlank(decimalLatitude) && StringUtils.isNotBlank(decimalLongitude)) {
                 try {
                     zones = GeoLocationHelper.getZonesContainingPoint(decimalLatitude, decimalLongitude);
@@ -52,8 +54,9 @@ public class ValidationUtils {
                 }
             }
         } else {
+            logger.debug("Sampling in SDS avoided. Sample values are provided.");
             SensitivityZone zone = SensitivityZoneFactory.getZoneByName(state);
-            if (zone == null) {
+            if (zone == null && state != null) {
                 zone = SensitivityZoneFactory.getZone(state.toUpperCase());
             }
             if (zone == null) {
@@ -69,7 +72,6 @@ public class ValidationUtils {
         }
 
         facts.add(FactCollection.ZONES_KEY, zones.toString());
-
         return true;
     }
 
@@ -88,29 +90,6 @@ public class ValidationUtils {
         }
 
         return isValidNumber(decimalLatitude) && isValidNumber(decimalLongitude);
-    }
-
-    public static String validateName(Map<String, String> facts) {
-
-        String scientificName = facts.get(FactCollection.SCIENTIFIC_NAME_KEY);
-        if (StringUtils.isNotBlank(scientificName) && !scientificName.equalsIgnoreCase("\\N")) {
-            return scientificName;
-        } else {
-            String genus = facts.get(FactCollection.GENUS_KEY);
-            String specificEpithet = facts.get(FactCollection.SPECIFIC_EPITHET_KEY);
-            String intraSpecificEpithet = facts.get(FactCollection.INTRA_SPECIFIC_EPITHET_KEY);
-
-            if (StringUtils.isBlank(specificEpithet)) {
-                return StringUtils.isBlank(genus) ? "" : genus;
-            } else {
-                StringBuilder name = new StringBuilder(genus);
-                name.append(" ").append(specificEpithet);
-                if (StringUtils.isNotBlank(intraSpecificEpithet)) {
-                    name.append(" ").append(intraSpecificEpithet);
-                }
-                return name.toString();
-            }
-        }
     }
 
     public static boolean isValidNumber(String number) {
@@ -134,7 +113,10 @@ public class ValidationUtils {
      * @return
      */
     public static Map<String,Object> restrictForPests(Map<String,String>properties){
-        return restrictToTypes(properties,new String[]{"dataResourceUid","institutionCode", "collectionCode",},"Taxon");
+        return restrictToTypes(
+                properties,
+                new String[]{"dataResourceUid","institutionCode","collectionCode","gridReference"},
+                "Taxon");
     }
 
     /**
@@ -147,16 +129,16 @@ public class ValidationUtils {
     public static Map<String,Object> restrictToTypes(Map<String,String>properties,String[] extraFields,String...types){
         List<String> list = new java.util.ArrayList<String>();
         for(String type: types){
-            List<DwcTerm> terms=DwcTerm.listByGroup(type);
+            List<DwcTerm> terms = DwcTerm.listByGroup(type);
             for(DwcTerm term:terms)
                 list.add(term.simpleName());
         }
         if(extraFields != null){
-            for(String f:extraFields)
+            for(String f : extraFields)
                 list.add(f);
         }
         //System.out.println("LIST: " + list);
-        return restrictProperties(properties,list,false);
+        return restrictProperties(properties, list, false);
 
     }
 
@@ -170,21 +152,19 @@ public class ValidationUtils {
     public static Map<String, Object> restrictProperties(Map<String,String> properties, List<String> list, boolean isBlacklist){
         Map<String, String> originalSensitiveValues = new HashMap<String, String>();
         Map<String, Object> results = new HashMap<String, Object>();
-        for(String key:properties.keySet()){
+        for(String key : properties.keySet()){
             String value = properties.get(key);
-            if(StringUtils.isNotBlank(value) &&((list.contains(key) && isBlacklist)||(!list.contains(key) && !isBlacklist))){
+            if(StringUtils.isNotBlank(value) && ((list.contains(key) && isBlacklist) || (!list.contains(key) && !isBlacklist))){
                 //add it to the original sensitive values
-                results.put(key,"");
+                results.put(key, "");
                 originalSensitiveValues.put(key, value);
-            }
-            else{
+            } else {
                 //we can return the property
                 results.put(key, value);
             }
         }
         //at the end add the original sensitive values
         results.put("originalSensitiveValues", originalSensitiveValues);
-
         return results;
     }
 }

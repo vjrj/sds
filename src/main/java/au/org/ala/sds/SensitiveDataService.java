@@ -14,26 +14,17 @@
  */
 package au.org.ala.sds;
 
-import au.org.ala.sds.knowledgebase.KnowledgeBaseFactory;
 import au.org.ala.sds.model.Message;
 import au.org.ala.sds.model.SensitiveTaxon;
-import au.org.ala.sds.model.SensitivityCategory;
-import au.org.ala.sds.model.SensitivityCategoryFactory;
 import au.org.ala.sds.util.Configuration;
 import au.org.ala.sds.util.ValidationUtils;
 import au.org.ala.sds.validation.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.kie.internal.KnowledgeBase;
-import org.kie.internal.runtime.StatelessKnowledgeSession;
-
-
 import java.util.Map;
 
 /**
- *
  * This class provides the generic entry into the SDS. Users don't need to know how to use piece the components together.
- *
  *
  * @author Natasha Carter (natasha.carter@csiro.au)
  */
@@ -41,7 +32,9 @@ public class SensitiveDataService {
 
     protected static final Logger logger = Logger.getLogger(SensitiveDataService.class);
 
-    private KnowledgeBase knowledgeBase;
+    /** A flag passed in the property map used to determine if sampled values have been provided */
+    public static final String SAMPLED_VALUES_PROVIDED = "samplesProvided";
+
     private ReportFactory reportFactory = new SdsReportFactory();
 
     public ValidationOutcome testMapDetails(SensitiveSpeciesFinder finder,Map<String, String> properties, String scientificName){
@@ -58,7 +51,8 @@ public class SensitiveDataService {
      * @return A validation outcome to be used by the client processing. It is up to each client program to perform actions
      * resulting from the outcome.
      */
-    public ValidationOutcome testMapDetails(SensitiveSpeciesFinder finder, Map<String, String> properties,
+    public ValidationOutcome testMapDetails(SensitiveSpeciesFinder finder,
+                                            Map<String, String> properties,
                                             String scientificName, String taxonId){
         //Step 1 apply rules for flags
         Configuration config = null;
@@ -113,8 +107,9 @@ public class SensitiveDataService {
         vo.getReport().setCategory(rule);
         vo.getReport().setAssertion(MessageFactory.getMessageText(rule, scientificName));
         vo.getReport().addMessage(MessageFactory.createMessage(Message.Type.INFO, rule, scientificName));
+
         //now remove all the non-classification/attribution properties
-        Map<String,Object> results=ValidationUtils.restrictForPests(properties);
+        Map<String, Object> results = ValidationUtils.restrictForPests(properties);
         vo.setResult(results);
         return vo;
     }

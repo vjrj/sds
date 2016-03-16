@@ -110,8 +110,9 @@ public class ConservationService implements ValidationService {
             emptyValueIfNecessary("verbatimCoordinates", occurrence, originalSensitiveValues, results);
             emptyValueIfNecessary("footprintWKT", occurrence, originalSensitiveValues, results);
 
-            if (gl.getGeneralisationInMetres().equals("") && gl.getGeneralisedLatitude() != null && gl.getGeneralisedLatitude().equals("")) {
-                results.put("informationWithheld", "Location co-ordinates have been withheld in accordance with " + facts.get(FactCollection.STATE_PROVINCE_KEY) + " sensitive species policy");
+            if (gl.coordinatesWithheld()) {
+                results.put("informationWithheld", "Location co-ordinates have been withheld in accordance with " +
+                        facts.get(FactCollection.STATE_PROVINCE_KEY) + " sensitive species policy");
             }
         } else {
             outcome.setSensitive(false);
@@ -132,7 +133,8 @@ public class ConservationService implements ValidationService {
         return outcome;
     }
 
-    private void emptyValueIfNecessary(String field, Map<String,String> facts, Map<String,String> originalSensitiveValues, Map<String,Object> results){
+    private void emptyValueIfNecessary(String field, Map<String,String> facts,
+                                       Map<String,String> originalSensitiveValues, Map<String,Object> results){
         if(facts.containsKey(field)){
             results.put(field, "");
             originalSensitiveValues.put(field, facts.get(field));

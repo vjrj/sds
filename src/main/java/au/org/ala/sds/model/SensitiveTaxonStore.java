@@ -213,4 +213,9 @@ public class SensitiveTaxonStore implements Serializable {
         }
     }
 
+    public int getTaxonCount(){
+        if(taxonList != null)
+            return taxonList.size();
+        return 0;
+    }
 }

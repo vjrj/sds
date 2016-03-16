@@ -181,7 +181,7 @@ public class SensitivityZone implements Serializable {
     public static String getZoneDescriptions(List<SensitivityZone> zones) {
         StringBuffer buff = new StringBuffer();
         for (SensitivityZone sz : zones) {
-            System.out.println("Adding to zone description:"  + sz);
+            //System.out.println("Adding to zone description:"  + sz);
             if (sz != null) {
                 if (buff.length() > 0) {
                     buff.append(", ");

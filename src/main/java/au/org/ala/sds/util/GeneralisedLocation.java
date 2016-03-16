@@ -89,10 +89,6 @@ public class GeneralisedLocation {
         return this.instances;
     }
 
-    public List<SensitivityZone> getMatchingZones() {
-        return zones;
-    }
-
     private void generaliseCoordinates() {
 
         generalisationInMetres = "";
@@ -149,6 +145,10 @@ public class GeneralisedLocation {
             description = "Location not generalised the severity of generalisation is not specified or is unrecognised.";
             sensitive = false;
         }
+    }
+
+    public boolean coordinatesWithheld(){
+        return getGeneralisationInMetres().equals("") && getGeneralisedLatitude() != null && getGeneralisedLatitude().equals("");
     }
 
     private void generaliseCoordinates(int decimalPlaces) {

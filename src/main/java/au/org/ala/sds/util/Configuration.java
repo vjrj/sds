@@ -1,5 +1,7 @@
 package au.org.ala.sds.util;
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -8,6 +10,8 @@ import java.util.List;
 import java.util.Properties;
 
 public class Configuration {
+
+    protected static final Logger logger = Logger.getLogger(Configuration.class);
 
     private static  Configuration instance = null;
 
@@ -20,13 +24,18 @@ public class Configuration {
     private Configuration() throws Exception {
         config = new Properties();
         File configFile = new File("/data/sds/config/sds-config.properties");
-        config.load(new FileInputStream(configFile));
+        try {
+            config.load(new FileInputStream(configFile));
+        } catch(IOException e) {
+            logger.warn("External config for SDS not found. Using defaults.");
+        }
     }
 
     public static Configuration getInstance() {
         try {
-            if (instance == null)
+            if (instance == null) {
                 instance = new Configuration();
+            }
         } catch (Exception e){
             throw new RuntimeException(e);
         }

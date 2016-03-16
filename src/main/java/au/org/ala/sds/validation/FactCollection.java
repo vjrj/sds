@@ -63,6 +63,10 @@ public class FactCollection {
         return facts.get(key);
     }
 
+    public boolean contains(String key)  {
+        return facts.containsKey(key);
+    }
+
     public String remove(String key) {
         return facts.remove(key);
     }
