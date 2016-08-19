@@ -14,10 +14,18 @@
  ***************************************************************************/
 package au.org.ala.sds.model;
 
+import au.org.ala.names.search.ALANameSearcher;
+import au.org.ala.sds.SensitiveSpeciesFinder;
+import au.org.ala.sds.SensitiveSpeciesFinderFactory;
+import au.org.ala.sds.util.Configuration;
 import org.junit.Test;
 
 public class SensitiveSpeciesStoreTest {
-
+    @Test
+    public void testCreate() throws Exception {
+        SensitiveSpeciesFinder finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder(new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex()));
+        SensitiveTaxon taxon = finder.findSensitiveSpecies("Acacia dealbata");
+    }
     @Test
     public void testStripTaxonTokens() {
 

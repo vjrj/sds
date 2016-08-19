@@ -14,23 +14,17 @@
  ***************************************************************************/
 package au.org.ala.sds.model;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import au.org.ala.names.model.LinnaeanRankClassification;
+import au.org.ala.names.model.NameSearchResult;
+import au.org.ala.names.search.ALANameSearcher;
+import au.org.ala.names.search.SearchResultException;
+import au.org.ala.sds.dao.SensitiveSpeciesDao;
+import au.org.ala.sds.model.SensitiveTaxon.Rank;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
-import au.org.ala.names.search.ALANameSearcher;
-import au.org.ala.names.search.SearchResultException;
-import au.org.ala.names.model.NameSearchResult;
-import au.org.ala.names.model.LinnaeanRankClassification;
-import au.org.ala.names.model.RankType;
-import au.org.ala.sds.dao.SensitiveSpeciesDao;
-import au.org.ala.sds.model.SensitiveTaxon.Rank;
+import java.io.Serializable;
+import java.util.*;
 
 /**
  *
@@ -205,7 +199,7 @@ public class SensitiveTaxonStore implements Serializable {
         if (match.isSynonym()) {
             accepted = namesSearcher.searchForRecordByLsid(match.getAcceptedLsid());
             if (accepted == null) {
-                logger.error("Could not find accepted name for synonym '" + match.getCleanName() + "'");
+                logger.error("Could not find accepted name for synonym '" + match.getRankClassification().getScientificName() + "' - " + match.getLsid() + " - " + match.getAcceptedLsid());
             }
             return accepted;
         } else {
