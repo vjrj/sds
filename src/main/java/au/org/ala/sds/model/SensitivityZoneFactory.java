@@ -3,14 +3,13 @@
  */
 package au.org.ala.sds.model;
 
+import au.org.ala.sds.dao.SensitivityZonesXmlDao;
+import au.org.ala.sds.util.Configuration;
+import org.apache.log4j.Logger;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
-
-import org.apache.log4j.Logger;
-
-import au.org.ala.sds.dao.SensitivityZonesXmlDao;
-import au.org.ala.sds.util.Configuration;
 
 /**
  *
@@ -40,6 +39,7 @@ public class SensitivityZoneFactory {
                 return sz;
             }
         }
+        logger.warn("No sensitivity zone matches " + name);
         return null;
     }
 

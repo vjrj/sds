@@ -3,14 +3,13 @@
  */
 package au.org.ala.sds.model;
 
+import au.org.ala.sds.dao.SensitivityCategoryXmlDao;
+import au.org.ala.sds.util.Configuration;
+import org.apache.log4j.Logger;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
-
-import org.apache.log4j.Logger;
-
-import au.org.ala.sds.dao.SensitivityCategoryXmlDao;
-import au.org.ala.sds.util.Configuration;
 
 /**
  *
@@ -28,7 +27,10 @@ public class SensitivityCategoryFactory {
         if (categories == null) {
             initCategories();
         }
-        return categories.get(key);
+        SensitivityCategory category = categories.get(key);
+        if (category == null)
+            logger.warn("No category for " + key);
+        return category;
     }
 
     private static void initCategories() {
