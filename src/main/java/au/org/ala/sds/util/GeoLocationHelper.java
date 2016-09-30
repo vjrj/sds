@@ -32,6 +32,7 @@ public class GeoLocationHelper {
     final static String PIZ_VIC_UPTON_LAYER = "cl964";
     final static String PIZ_VIC_WHITEBRIDGE_LAYER = "cl965";
     final static String STATES_TERRITORIES_LAYER ="cl22";
+    final static String COUNTRY_LAYER ="cl932";
 
     final static List<String> SDS_GEOSPATIAL_LAYERS = Arrays.asList(
             COASTAL_WATERS_LAYER,
@@ -48,7 +49,8 @@ public class GeoLocationHelper {
             PIZ_VIC_MOOROOPNA_LAYER,
             PIZ_VIC_UPTON_LAYER,
             PIZ_VIC_WHITEBRIDGE_LAYER,
-            STATES_TERRITORIES_LAYER);
+            STATES_TERRITORIES_LAYER,
+            COUNTRY_LAYER);
 
     public static Set<SensitivityZone> getZonesContainingPoint(String latitude, String longitude) throws Exception {
 
@@ -149,6 +151,15 @@ public class GeoLocationHelper {
 
             } else if (field.equalsIgnoreCase(PIZ_VIC_WHITEBRIDGE_LAYER) && !value.equalsIgnoreCase("n/a")) {
                 zones.add(SensitivityZoneFactory.getZone(SensitivityZone.PIZVICWHB));
+            } else if (field.equalsIgnoreCase(COUNTRY_LAYER) && !value.equalsIgnoreCase("n/a")) {
+                SensitivityZone zone = SensitivityZoneFactory.getZone(SensitivityZone.getCountryCode(value));
+                if (zone != null) {
+                    zones.add(zone);
+
+                    if (!"AU".equals(zone.getId())) {
+                        zones.add(SensitivityZoneFactory.getZone(SensitivityZone.NOTAUS));
+                    }
+                }
             }
 
         }

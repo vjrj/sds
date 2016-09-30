@@ -144,6 +144,9 @@ public class GeoLocationTest {
         assertTrue(zones.contains(SensitivityZoneFactory.getZone(SensitivityZone.PIZVICUPT)));
         assertTrue(zones.contains(SensitivityZoneFactory.getZone(SensitivityZone.VIC)));
 
+        // New Zealand Zone
+        zones = GeoLocationHelper.getZonesContainingPoint("-37.5", "175");
+        assertTrue(zones.contains(SensitivityZoneFactory.getZone(SensitivityZone.getCountryCode("New Zealand"))));
     }
 
     @Test
@@ -162,6 +165,7 @@ public class GeoLocationTest {
                 GeoLocationHelper.PIZ_VIC_NAGAMBIE_LAYER,
                 GeoLocationHelper.PIZ_VIC_MOOROOPNA_LAYER,
                 GeoLocationHelper.PIZ_VIC_UPTON_LAYER,
-                GeoLocationHelper.PIZ_VIC_WHITEBRIDGE_LAYER)));
+                GeoLocationHelper.PIZ_VIC_WHITEBRIDGE_LAYER,
+                GeoLocationHelper.COUNTRY_LAYER)));
     }
 }

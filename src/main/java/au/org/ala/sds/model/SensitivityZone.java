@@ -1,8 +1,7 @@
 package au.org.ala.sds.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -53,6 +52,14 @@ public class SensitivityZone implements Serializable {
     private final String id;
     private final String name;
     private final ZoneType type;
+
+    final static Map<String,String> countryCodes = new HashMap<String,String>();
+
+    static {
+        for (Locale locale : Locale.getAvailableLocales()) {
+            countryCodes.put(locale.getDisplayCountry(), locale.getCountry());
+        }
+    }
 
     public SensitivityZone(String id, String name, ZoneType type) {
         this.id = id;
@@ -169,6 +176,10 @@ public class SensitivityZone implements Serializable {
             }
         }
         return "???";
+    }
+
+    public static String getCountryCode(String name) {
+        return countryCodes.get(name);
     }
 
 }
