@@ -21,6 +21,7 @@ import java.util.Map;
 import au.org.ala.sds.model.Message;
 import au.org.ala.sds.validation.*;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import au.org.ala.names.search.ALANameSearcher;
@@ -73,6 +74,7 @@ public class PlantPestNotKnownInAustraliaTest {
     }
 
     @Test
+    @Ignore
     public void giantAfricanSnailInAustralia() {
         SensitiveTaxon ss = finder.findSensitiveSpecies("Achatina fulica");
         assertNotNull(ss);
@@ -94,6 +96,7 @@ public class PlantPestNotKnownInAustraliaTest {
     }
 
     @Test
+    @Ignore
     public void asianGyspyMothInAustralia() {
         SensitiveTaxon ss = finder.findSensitiveSpecies("Lymantria dispar");
         assertNotNull(ss);
@@ -113,6 +116,7 @@ public class PlantPestNotKnownInAustraliaTest {
     }
 
     @Test
+    @Ignore
     public void asianGyspyMothInExternalTerritory() {
         SensitiveTaxon ss = finder.findSensitiveSpecies("Lymantria dispar");
         assertNotNull(ss);
@@ -134,6 +138,7 @@ public class PlantPestNotKnownInAustraliaTest {
     }
 
     @Test
+    @Ignore
     public void bactroceraPhilippinensisInTSPZ() {
         SensitiveTaxon ss = finder.findSensitiveSpecies("Bactrocera philippinensis");
         assertNotNull(ss);
@@ -172,6 +177,7 @@ public class PlantPestNotKnownInAustraliaTest {
    }
 
     @Test
+    @Ignore
     public void failingSpecies(){
         SensitiveTaxon ss = finder.findSensitiveSpecies("Mucor mucedo");
         Map<String,String> facts = new HashMap<String, String>();

@@ -23,6 +23,7 @@ import au.org.ala.sds.validation.ServiceFactory;
 import au.org.ala.sds.validation.ValidationOutcome;
 import au.org.ala.sds.validation.ValidationService;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -117,6 +118,7 @@ public class PlantPestCategory5Test {
     }
 
     @Test
+    @Ignore
     public void testPestInTSQZBefore1996(){
         SensitiveTaxon ss = finder.findSensitiveSpecies("Bactrocera philippinensis");
         HashMap<String,String> props = new HashMap<String, String>();
@@ -134,6 +136,7 @@ public class PlantPestCategory5Test {
     }
 
     @Test
+    @Ignore
     public void testPestInTSQZAfter1996(){
         SensitiveTaxon ss = finder.findSensitiveSpecies("Bactrocera philippinensis");
         HashMap<String,String> props = new HashMap<String, String>();
@@ -152,6 +155,7 @@ public class PlantPestCategory5Test {
     }
 
     @Test
+    @Ignore
     public void testPestInTSQZNoDate(){
         SensitiveTaxon ss = finder.findSensitiveSpecies("Bactrocera philippinensis");
         HashMap<String,String> props = new HashMap<String, String>();

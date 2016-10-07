@@ -22,6 +22,7 @@ import au.org.ala.sds.model.Message;
 import au.org.ala.sds.util.GeoLocationHelper;
 import au.org.ala.sds.validation.*;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import au.org.ala.names.search.ALANameSearcher;
@@ -126,6 +127,7 @@ public class PlantPestSubjectToOfficialControlTest {
     }
 
     @Test
+    @Ignore
     public void outsideOfficialControlWithCat6(){
         System.out.println("officialControlShapeArea");
         SensitiveTaxon ss = finder.findSensitiveSpecies("Daktulosphaira vitifoliae");
