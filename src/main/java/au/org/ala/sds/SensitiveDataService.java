@@ -37,8 +37,26 @@ public class SensitiveDataService {
 
     private ReportFactory reportFactory = new SdsReportFactory();
 
-    public ValidationOutcome testMapDetails(SensitiveSpeciesFinder finder,Map<String, String> properties, String scientificName){
-        return testMapDetails(finder, properties, scientificName, null);
+    public boolean isTaxonSensitive(SensitiveSpeciesFinder finder, String scientificName, String taxonId){
+        return  getSensitiveTaxon(finder, scientificName, taxonId) != null;
+    }
+
+    private SensitiveTaxon getSensitiveTaxon(SensitiveSpeciesFinder finder, String scientificName, String taxonId) {
+        SensitiveTaxon st = null;
+        if(taxonId != null) {
+            st = finder.findSensitiveSpeciesByLsid(taxonId);
+        }
+
+        if(st == null && scientificName != null) {
+            st = finder.findSensitiveSpecies(scientificName);
+        }
+        return st;
+    }
+
+    public ValidationOutcome testMapDetails(SensitiveSpeciesFinder finder,
+                                            Map<String, String> properties,
+                                            String scientificName){
+        return testMapDetails(finder, properties,scientificName);
     }
 
     /**
@@ -53,7 +71,8 @@ public class SensitiveDataService {
      */
     public ValidationOutcome testMapDetails(SensitiveSpeciesFinder finder,
                                             Map<String, String> properties,
-                                            String scientificName, String taxonId){
+                                            String scientificName,
+                                            String taxonId){
         //Step 1 apply rules for flags
         Configuration config = null;
         try {
@@ -72,14 +91,7 @@ public class SensitiveDataService {
         //Only continue if no flags were discovered
         //Step 2 extract the sensitive species and validate the service
         //search for a sensitive taxon
-        SensitiveTaxon st = null;
-        if(taxonId != null) {
-            st = finder.findSensitiveSpeciesByLsid(taxonId);
-        }
-
-        if(st == null && scientificName != null) {
-            st = finder.findSensitiveSpecies(scientificName);
-        }
+        SensitiveTaxon st = getSensitiveTaxon(finder, scientificName, taxonId);
 
         //if taxon recognised as a sensitive species, run the validation
         if(st != null){
@@ -95,6 +107,7 @@ public class SensitiveDataService {
 
     /**
      * Performs the restriction for the "flag" rules.
+     *
      * @param properties
      * @param rule
      * @param scientificName
