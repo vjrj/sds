@@ -11,6 +11,13 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
+
+import au.org.ala.sds.dao.SensitivityCategoryXmlDao;
+import au.org.ala.sds.util.Configuration;
+import org.apache.poi.util.StringUtil;
+
 /**
  *
  * @author Peter Flemming (peter.flemming@csiro.au)
@@ -24,6 +31,11 @@ public class SensitivityCategoryFactory {
     private static Map<String, SensitivityCategory> categories;
 
     public static SensitivityCategory getCategory(String key) {
+
+        if(StringUtils.isEmpty(key)){
+            return SensitivityCategory.DEFAULT_CATEGORY;
+        }
+
         if (categories == null) {
             initCategories();
         }

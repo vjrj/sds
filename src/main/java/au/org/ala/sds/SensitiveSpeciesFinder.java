@@ -28,6 +28,7 @@ import au.org.ala.sds.model.SensitiveTaxonStore;
 public class SensitiveSpeciesFinder implements Lookup {
 
     protected static final Logger logger = Logger.getLogger(SensitiveSpeciesFinder.class);
+
     private final SensitiveTaxonStore store;
 
     public SensitiveSpeciesFinder(SensitiveTaxonStore store) {
@@ -58,5 +59,7 @@ public class SensitiveSpeciesFinder implements Lookup {
     public boolean isSensitive(String scientificName) {
         return store.findByName(scientificName) != null;
     }
+
+    public SensitiveTaxonStore getStore(){ return store;}
 
 }

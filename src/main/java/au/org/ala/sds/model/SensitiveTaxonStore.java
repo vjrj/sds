@@ -82,7 +82,7 @@ public class SensitiveTaxonStore implements Serializable {
             }
         }
 
-        // Add additional accepted sensitive taxons
+        // Add additional accepted sensitive taxa
         taxonList.addAll(additionalAcceptedTaxons);
         Collections.sort(taxonList);
 
@@ -121,9 +121,9 @@ public class SensitiveTaxonStore implements Serializable {
             acceptedName = result.getRankClassification().getScientificName();
         }
 
-        Integer index = nameMap.get(acceptedName);
-        if (index != null) {
-            return taxonList.get(index);
+        Integer nameIndex = nameMap.get(acceptedName);
+        if (nameIndex != null) {
+            return taxonList.get(nameIndex);
         } else {
             // Try binary search
             return findByExactMatch(name);
@@ -207,4 +207,9 @@ public class SensitiveTaxonStore implements Serializable {
         }
     }
 
+    public int getTaxonCount(){
+        if(taxonList != null)
+            return taxonList.size();
+        return 0;
+    }
 }

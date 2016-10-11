@@ -3,6 +3,7 @@ package au.org.ala.sds.model;
 import java.io.Serializable;
 import java.util.*;
 
+import org.apache.commons.collections.comparators.ComparableComparator;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -51,6 +52,7 @@ public class SensitivityZone implements Serializable {
 
     private final String id;
     private final String name;
+    private final String layerId;   //the layer used to identify a layer
     private final ZoneType type;
 
     final static Map<String,String> countryCodes = new HashMap<String,String>();
@@ -61,9 +63,10 @@ public class SensitivityZone implements Serializable {
         }
     }
 
-    public SensitivityZone(String id, String name, ZoneType type) {
+    public SensitivityZone(String id, String name, String layerId, ZoneType type) {
         this.id = id;
         this.name = name;
+        this.layerId = layerId;
         this.type = type;
     }
 
@@ -75,6 +78,10 @@ public class SensitivityZone implements Serializable {
         return name;
     }
 
+    public String getLayerId() {
+        return layerId;
+    }
+
     public ZoneType getType() {
         return type;
     }
@@ -84,6 +91,7 @@ public class SensitivityZone implements Serializable {
         return new HashCodeBuilder(17, 37).
             append(this.id).
             append(this.name).
+            append(this.layerId).
             append(this.type).
             toHashCode();
     }
@@ -101,7 +109,7 @@ public class SensitivityZone implements Serializable {
 
     @Override
     public String toString() {
-        return this.id;
+        return this.id + ", Name: " + this.getName() + ", Zone: " + getType();
     }
 
     public String toJson() {
@@ -162,20 +170,45 @@ public class SensitivityZone implements Serializable {
         List<SensitivityZone> zoneList = new ArrayList<SensitivityZone>();
         String[] zones = StringUtils.split(StringUtils.substringBetween(string, "[", "]"), ',');
         for (String zone : zones) {
-            zoneList.add(SensitivityZoneFactory.getZone(StringUtils.strip(zone)));
+            SensitivityZone sz = SensitivityZoneFactory.getZone(StringUtils.strip(zone));
+            if(sz != null){
+                zoneList.add(sz);
+            }
         }
         return zoneList;
     }
 
-    public static String getState(List<SensitivityZone> zones) {
+    public static String getZoneDescriptions(List<SensitivityZone> zones) {
+        StringBuffer buff = new StringBuffer();
+        Collections.sort(zones, new Comparator<SensitivityZone>(){
+
+            @Override
+            public int compare(SensitivityZone o1, SensitivityZone o2) {
+                if(o1.getType() != null && o2.getType() != null
+                        && o1.getType().equals(ZoneType.COUNTRY)
+                        && o2.getType().equals(ZoneType.STATE)
+                        ){
+                    return 1;
+                }
+                if(o1.getType() != null && o2.getType() != null
+                        && o1.getType().equals(ZoneType.STATE)
+                        && o2.getType().equals(ZoneType.COUNTRY)
+                        ){
+                    return -1;
+                }
+
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
         for (SensitivityZone sz : zones) {
-            if (sz.getType().equals(ZoneType.STATE)) {
-                return sz.getId();
-            } else if (sz.getId().equals(NOTAUS)) {
-                return sz.getName();
+            if (sz != null) {
+                if (buff.length() > 0) {
+                    buff.append(", ");
+                }
+                buff.append(sz.getName());
             }
         }
-        return "???";
+        return buff.toString();
     }
 
     public static String getCountryCode(String name) {

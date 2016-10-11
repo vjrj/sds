@@ -157,8 +157,13 @@ public class SensitiveTaxon implements Serializable, Comparable<SensitiveTaxon> 
         for (SensitivityInstance si : getInstances()) {
             if (zones.contains(si.getZone())) {
                 instanceList.add(si);
-            } else if (si.getZone().equals(SensitivityZoneFactory.getZone(SensitivityZone.AUS)) &&
-                       SensitivityZone.isInAustralia(zones)) {
+            } else if (
+                    SensitivityZoneFactory.getZone(SensitivityZone.AUS) != null &&
+                            si != null &&
+                            si.getZone() != null &&
+                    si.getZone().equals(SensitivityZoneFactory.getZone(SensitivityZone.AUS)) &&
+                    SensitivityZone.isInAustralia(zones)
+                ) {
                 instanceList.add(si);
             }
         }

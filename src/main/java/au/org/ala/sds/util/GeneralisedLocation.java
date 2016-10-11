@@ -44,7 +44,7 @@ public class GeneralisedLocation {
         this.originalLongitude = longitude;
         this.zones = zones;
         this.instances = instances;
-        this.locationGeneralisation = getLocationGeneralistion();
+        this.locationGeneralisation = getLocationGeneralisation();
         this.sensitive = true;
         generaliseCoordinates();
     }
@@ -89,10 +89,6 @@ public class GeneralisedLocation {
         return this.instances;
     }
 
-    public List<SensitivityZone> getMatchingZones() {
-        return zones;
-    }
-
     private void generaliseCoordinates() {
 
         generalisationInMetres = "";
@@ -100,7 +96,7 @@ public class GeneralisedLocation {
             // Not sensitive at given location
             generalisedLatitude = originalLatitude;
             generalisedLongitude = originalLongitude;
-            String state = SensitivityZone.getState(zones);
+            String state = SensitivityZone.getZoneDescriptions(zones);
             description = MessageFactory.getMessageText(MessageFactory.LOCATION_NOT_GENERALISED, state.equalsIgnoreCase("Outside Australia") ? state : "in " + state);
             sensitive = false;
             return;
@@ -122,33 +118,37 @@ public class GeneralisedLocation {
         } else if (this.locationGeneralisation.equalsIgnoreCase("10km")) {
             generaliseCoordinates(1);
             if (isGeneralised()) {
-                description = MessageFactory.getMessageText(MessageFactory.LOCATION_GENERALISED, SensitivityZone.getState(zones), "0.1");
+                description = MessageFactory.getMessageText(MessageFactory.LOCATION_GENERALISED, SensitivityZone.getZoneDescriptions(zones), "0.1");
                 generalisationInMetres = "10000";
             } else {
-                description = MessageFactory.getMessageText(MessageFactory.LOCATION_ALREADY_GENERALISED, SensitivityZone.getState(zones), "0.1");
+                description = MessageFactory.getMessageText(MessageFactory.LOCATION_ALREADY_GENERALISED, SensitivityZone.getZoneDescriptions(zones), "0.1");
             }
-        } else if (this.locationGeneralisation.equalsIgnoreCase("1km")) {
+        } else if (this.locationGeneralisation.equalsIgnoreCase("1km") || this.locationGeneralisation.equalsIgnoreCase("2km")) {
             generaliseCoordinates(2);
             if (isGeneralised()) {
-                description = MessageFactory.getMessageText(MessageFactory.LOCATION_GENERALISED, SensitivityZone.getState(zones), "0.01");
+                description = MessageFactory.getMessageText(MessageFactory.LOCATION_GENERALISED, SensitivityZone.getZoneDescriptions(zones), "0.01");
                 generalisationInMetres = "1000";
             } else {
-                description = MessageFactory.getMessageText(MessageFactory.LOCATION_ALREADY_GENERALISED, SensitivityZone.getState(zones), "0.01");
+                description = MessageFactory.getMessageText(MessageFactory.LOCATION_ALREADY_GENERALISED, SensitivityZone.getZoneDescriptions(zones), "0.01");
             }
         } else if (this.locationGeneralisation.equalsIgnoreCase("100m")) {
             generaliseCoordinates(3);
             if (isGeneralised()) {
-                description = MessageFactory.getMessageText(MessageFactory.LOCATION_GENERALISED, SensitivityZone.getState(zones), "0.001");
+                description = MessageFactory.getMessageText(MessageFactory.LOCATION_GENERALISED, SensitivityZone.getZoneDescriptions(zones), "0.001");
                 generalisationInMetres = "100";
             } else {
-                description = MessageFactory.getMessageText(MessageFactory.LOCATION_ALREADY_GENERALISED, SensitivityZone.getState(zones), "0.001");
+                description = MessageFactory.getMessageText(MessageFactory.LOCATION_ALREADY_GENERALISED, SensitivityZone.getZoneDescriptions(zones), "0.001");
             }
         } else {
             generalisedLatitude = originalLatitude;
             generalisedLongitude = originalLongitude;
-            description = "Location not generalised because it is undefined.";
+            description = "Location not generalised the severity of generalisation is not specified or is unrecognised.";
             sensitive = false;
         }
+    }
+
+    public boolean coordinatesWithheld(){
+        return getGeneralisationInMetres().equals("") && getGeneralisedLatitude() != null && getGeneralisedLatitude().equals("");
     }
 
     private void generaliseCoordinates(int decimalPlaces) {
@@ -169,11 +169,13 @@ public class GeneralisedLocation {
         }
     }
 
-    private String getLocationGeneralistion() {
+    private String getLocationGeneralisation() {
         String generalisation = null;
+
+        //this is where zones are matched to sensitive zone...
         for (SensitivityInstance si : instances) {
             if (si instanceof ConservationInstance) {
-                if (zones.contains(si.getZone()) || si.getZone().getId().equals(SensitivityZone.AUS) && SensitivityZone.isInAustralia(zones)) {
+                if (zones.contains(si.getZone()) || (si.getZone().getId().equals(SensitivityZone.AUS) && SensitivityZone.isInAustralia(zones))) {
                     generalisation = maxGeneralisation(generalisation, ((ConservationInstance) si).getLocationGeneralisation());
                 }
             }
@@ -201,6 +203,8 @@ public class GeneralisedLocation {
             return 10000;
         } else if (generalisation.equalsIgnoreCase("1km")) {
             return 1000;
+        } else if (generalisation.equalsIgnoreCase("2km")) {
+            return 2000;
         } else if (generalisation.equalsIgnoreCase("100m")) {
             return 100;
         } else {

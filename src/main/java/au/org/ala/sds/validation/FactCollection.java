@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
+ * A selection of key value pairs describing an occurrence.
  *
  * @author Peter Flemming (peter.flemming@csiro.au)
  */
@@ -60,6 +61,10 @@ public class FactCollection {
 
     public String get(String key) {
         return facts.get(key);
+    }
+
+    public boolean contains(String key)  {
+        return facts.containsKey(key);
     }
 
     public String remove(String key) {

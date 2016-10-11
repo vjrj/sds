@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sensitivity-zones>
+    <sensitivity-zone id="SCOTLAND" 	 name="Scotland"	  type="Country"	layerId="cl2" 	pids="253" />
+    <sensitivity-zone id="ENGLAND" 		 name="England" 	  type="Country"	layerId="cl2" 	pids="252" />
+    <sensitivity-zone id="WALES" 		 name="Wales" 		  type="Country"	layerId="cl2" 	pids="254" />
+</sensitivity-zones>

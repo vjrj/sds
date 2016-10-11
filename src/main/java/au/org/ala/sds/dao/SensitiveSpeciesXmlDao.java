@@ -30,6 +30,7 @@ public class SensitiveSpeciesXmlDao implements SensitiveSpeciesDao {
     public SensitiveSpeciesXmlDao(InputStream stream) throws Exception {
         this.stream = stream;
     }
+
     /**
      * @throws IOException
      * @throws JDOMException
@@ -38,11 +39,10 @@ public class SensitiveSpeciesXmlDao implements SensitiveSpeciesDao {
     @SuppressWarnings("unchecked")
     @Override
     public List<SensitiveTaxon> getAll() throws Exception {
+
         List<SensitiveTaxon> species = new ArrayList<SensitiveTaxon>();
         SAXBuilder builder = new SAXBuilder();
-        Document doc = null;
-
-        doc = builder.build(this.stream);
+        Document doc = builder.build(this.stream);
 
         Element root = doc.getRootElement();
         List speciesList = root.getChildren();
@@ -53,6 +53,7 @@ public class SensitiveSpeciesXmlDao implements SensitiveSpeciesDao {
             String family = sse.getAttributeValue("family");
             SensitiveTaxon.Rank rank = SensitiveTaxon.Rank.valueOf(sse.getAttributeValue("rank"));
             String commonName = sse.getAttributeValue("commonName");
+
             SensitiveTaxon ss = new SensitiveTaxon(name, rank);
             ss.setFamily(family);
             ss.setCommonName(commonName);
@@ -68,34 +69,39 @@ public class SensitiveSpeciesXmlDao implements SensitiveSpeciesDao {
             for (Iterator ili = instanceList.iterator(); ili.hasNext(); ) {
                 Element ie = (Element) ili.next();
                 SensitivityInstance instance = null;
+                String zone  = ie.getAttributeValue("zone");
+
                 if (ie.getName().equalsIgnoreCase("conservationInstance")) {
                     instance = new ConservationInstance(
-                            SensitivityCategoryFactory.getCategory(ie.getAttributeValue("category")),
-                            ie.getAttributeValue("authority"),
-                            ie.getAttributeValue("dataResourceId"),
-                            SensitivityZoneFactory.getZone(ie.getAttributeValue("zone")),
-                            ie.getAttributeValue("reason"),
-                            ie.getAttributeValue("remarks"),
-                            ie.getAttributeValue("generalisation"));
+                        SensitivityCategoryFactory.getCategory(ie.getAttributeValue("category")),
+                        ie.getAttributeValue("authority"),
+                        ie.getAttributeValue("dataResourceId"),
+                        SensitivityZoneFactory.findZone(ie.getAttributeValue("zone")),
+                        ie.getAttributeValue("reason"),
+                        ie.getAttributeValue("remarks"),
+                        ie.getAttributeValue("generalisation")
+                    );
                 } else if (ie.getName().equalsIgnoreCase("plantPestInstance")) {
                     instance = new PlantPestInstance(
-                            SensitivityCategoryFactory.getCategory(ie.getAttributeValue("category")),
-                            ie.getAttributeValue("authority"),
-                            ie.getAttributeValue("dataResourceId"),
-                            SensitivityZoneFactory.getZone(ie.getAttributeValue("zone")),
-                            ie.getAttributeValue("reason"),
-                            ie.getAttributeValue("remarks"),
-                            ie.getAttributeValue("fromDate"),
-                            ie.getAttributeValue("toDate"));
-                            //check if there are any children transientEvents
-                            List<Element> transChildren = ie.getChildren();
-                            if(transChildren.size()>0){
-                                for(Element te : transChildren){
-                                    ((PlantPestInstance)instance).addTransientEvent(
-                                            te.getAttributeValue("eventDate"),
-                                            SensitivityZoneFactory.getZone(te.getAttributeValue("zone")));
-                                }
-                            }
+                        SensitivityCategoryFactory.getCategory(ie.getAttributeValue("category")),
+                        ie.getAttributeValue("authority"),
+                        ie.getAttributeValue("dataResourceId"),
+                        SensitivityZoneFactory.findZone(ie.getAttributeValue("zone")),
+                        ie.getAttributeValue("reason"),
+                        ie.getAttributeValue("remarks"),
+                        ie.getAttributeValue("fromDate"),
+                        ie.getAttributeValue("toDate")
+                    );
+
+                    //check if there are any children transientEvents
+                    List<Element> transChildren = ie.getChildren();
+                    if(transChildren.size()>0){
+                        for(Element te : transChildren){
+                            ((PlantPestInstance)instance).addTransientEvent(
+                                    te.getAttributeValue("eventDate"),
+                                    SensitivityZoneFactory.getZone(te.getAttributeValue("zone")));
+                        }
+                    }
                 }
                 ss.getInstances().add(instance);
             }

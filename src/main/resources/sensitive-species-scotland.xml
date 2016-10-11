@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sensitiveSpeciesList>
+  <sensitiveSpecies name="Anas querquedula" family="Anatidae" guid="NBNSYS0000000136" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Numenius phaeopus" family="Scolopacidae" guid="NBNSYS0000000144" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Limosa limosa" family="Scolopacidae" guid="NBNSYS0000000145" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Tringa ochropus" family="Scolopacidae" guid="NBNSYS0000000147" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="100km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Tringa glareola" family="Scolopacidae" guid="NBNSYS0000000148" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Tringa nebularia" family="Scolopacidae" guid="NBNSYS0000000150" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="2km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Charadrius dubius" family="Charadriidae" guid="NBNSYS0000000162" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Calidris maritima" family="Scolopacidae" guid="NBNSYS0000000167" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="100km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Phalaropus lobatus" family="Phalaropodidae" guid="NBNSYS0000000172" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Calidris temminckii" family="Scolopacidae" guid="NBNSYS0000000174" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="100km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Charadrius morinellus" family="Charadriidae" guid="NBNSYS0000000176" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="100km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Anas acuta" family="Anatidae" guid="NBNSYS0000000189" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Bucephala clangula" family="Anatidae" guid="NBNSYS0000000191" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Melanitta nigra" family="Anatidae" guid="NBNSYS0000000196" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Cygnus cygnus" family="Anatidae" guid="NBNSYS0000000199" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Gavia stellata" family="Gaviidae" guid="NBNSYS0000000218" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="2km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Gavia arctica" family="Gaviidae" guid="NBNSYS0000000219" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="2km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Podiceps auritus" family="Podicipedidae" guid="NBNSYS0000000224" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Podiceps nigricollis" family="Podicipedidae" guid="NBNSYS0000000225" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Haliaeetus albicilla" family="Accipitridae" guid="NBNSYS0000000281" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Pandion haliaetus" family="Accipitridae" guid="NBNSYS0000000292" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Sterna dougallii" family="Sternidae" guid="NBNSYS0000000364" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Trichomanes speciosum" family="Hymenophyllaceae" guid="NBNSYS0000002028" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Saxifraga cernua" family="Saxifragaceae" guid="NBNSYS0000003500" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Vespertilio murinus" family="Vespertilionidae" guid="NBNSYS0000005095" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Plecotus auritus" family="Vespertilionidae" guid="NBNSYS0000005102" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Plecotus austriacus" family="Vespertilionidae" guid="NBNSYS0000005103" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Lutra lutra" family="Mustelidae" guid="NBNSYS0000005133" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Zygaena viciae argyllensis" family="Zygaenidae" guid="NBNSYS0000005191" rank="INFRASPECIFICNAME" commonName="New Forest Burnet Moth">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Zygaena lonicerae jocelynae" family="Zygaenidae" guid="NBNSYS0000005678" rank="INFRASPECIFICNAME" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="2km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Hammerschmidtia ferruginea" family="Syrphidae" guid="NBNSYS0000007021" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="2km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Blera fallax" family="Syrphidae" guid="NBNSYS0000007099" rank="SPECIES" commonName="Pine hoverfly">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Pipistrellus pygmaeus" family="Vespertilionidae" guid="NBNSYS0100004720" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Rhinolophus ferrumequinum" family="Rhinolophidae" guid="NHMSYS0000080176" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Rhinolophus hipposideros" family="Rhinolophidae" guid="NHMSYS0000080177" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Barbastella barbastellus" family="Vespertilionidae" guid="NHMSYS0000080178" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Myotis myotis" family="Vespertilionidae" guid="NHMSYS0000080182" rank="SPECIES" commonName="Mouse-Eared Batclustlydan&quot;">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Myotis mystacinus" family="Vespertilionidae" guid="NHMSYS0000080183" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Myotis nattereri" family="Vespertilionidae" guid="NHMSYS0000080184" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Nyctalus leisleri" family="Vespertilionidae" guid="NHMSYS0000080185" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Nyctalus noctula" family="Vespertilionidae" guid="NHMSYS0000080186" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Pipistrellus nathusii" family="Vespertilionidae" guid="NHMSYS0000080187" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Martes martes" family="Mustelidae" guid="NHMSYS0000080190" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Meles meles" family="Mustelidae" guid="NHMSYS0000080191" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Leiocolea rutheana" family="Mesoptychiaceae" guid="NHMSYS0000310136" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Felis silvestris" family="Felidae" guid="NHMSYS0000332741" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Eptesicus bottae" family="Vespertilionidae" guid="NHMSYS0000376626" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Nyctalus azoreum" family="Vespertilionidae" guid="NHMSYS0000377007" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Nyctalus lasiopterus" family="Vespertilionidae" guid="NHMSYS0000377011" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Pipistrellus kuhlii" family="Vespertilionidae" guid="NHMSYS0000377112" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Pipistrellus maderensis" family="Vespertilionidae" guid="NHMSYS0000377116" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Plecotus teneriffae" family="Vespertilionidae" guid="NHMSYS0000377134" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Woodsia ilvensis" family="Woodsiaceae" guid="NHMSYS0000465076" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Zygaena loti scotica" family="Zygaenidae" guid="NHMSYS0000504733" rank="INFRASPECIFICNAME" commonName="Slender Scotch Burnet Moth">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="2km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Zygaena exulans" family="Zygaenidae" guid="NHMSYS0000520663" rank="SPECIES" commonName="Scotch/Mountain Burnet Moth">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="2km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Eptesicus fuscus" family="Vespertilionidae" guid="NHMSYS0000528006" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Eptesicus nilssonii" family="Vespertilionidae" guid="NHMSYS0000528007" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Eptesicus serotinus" family="Vespertilionidae" guid="NHMSYS0000528008" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Myotis bechsteinii" family="Vespertilionidae" guid="NHMSYS0000528024" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Myotis brandtii" family="Vespertilionidae" guid="NHMSYS0000528026" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Myotis daubentonii" family="Vespertilionidae" guid="NHMSYS0000528028" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Myotis lucifugus" family="Vespertilionidae" guid="NHMSYS0000528029" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Accipiter gentilis" family="Accipitridae" guid="NHMSYS0000530119" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Aquila chrysaetos" family="Accipitridae" guid="NHMSYS0000530170" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Asio flammeus" family="Strigidae" guid="NHMSYS0000530180" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="2km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Caprimulgus europaeus" family="Caprimulgidae" guid="NHMSYS0000530242" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Circus aeruginosus" family="Accipitridae" guid="NHMSYS0000530293" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Circus cyaneus" family="Accipitridae" guid="NHMSYS0000530294" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Crex crex" family="Rallidae" guid="NHMSYS0000530322" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Falco peregrinus" family="Falconidae" guid="NHMSYS0000530354" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Falco subbuteo" family="Falconidae" guid="NHMSYS0000530357" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Fringilla montifringilla" family="Fringillidae" guid="NHMSYS0000530368" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Milvus milvus" family="Accipitridae" guid="NHMSYS0000530482" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Panurus biarmicus" family="Sylviidae" guid="NHMSYS0000530526" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Tetrao tetrix" family="Phasianidae" guid="NHMSYS0000530658" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="2km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Tetrao urogallus" family="Phasianidae" guid="NHMSYS0000530659" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Turdus iliacus" family="Muscicapidae" guid="NHMSYS0000530673" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Turdus pilaris" family="Muscicapidae" guid="NHMSYS0000530679" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Falco columbarius" family="Falconidae" guid="NHMSYS0000530743" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="2km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Plectrophenax nivalis" family="Emberizidae" guid="NHMSYS0000530776" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Porzana porzana" family="Rallidae" guid="NHMSYS0000530787" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Pyrrhocorax pyrrhocorax" family="Corvidae" guid="NHMSYS0000530800" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Sternula albifrons" family="Laridae" guid="NHMSYS0001688285" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Margaritifera margaritifera" family="Margaritiferidae" guid="NHMSYS0001702090" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="50km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Pipistrellus pipistrellus" family="Vespertilionidae" guid="NHMSYS0020001356" rank="SPECIES" commonName="Common Pipistrelle">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Myotis alcathoe" family="Vespertilionidae" guid="NHMSYS0020636762" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Hypsugo savii" family="Vespertilionidae" guid="NHMSYS0020774288" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Lasiurus cinereus" family="Vespertilionidae" guid="NHMSYS0020774291" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Ostrea edulis" family="Ostreidae" guid="NHMSYS0020975316" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="20km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+  <sensitiveSpecies name="Erythrina erythrina" family="Fringillidae" guid="NHMSYS0021004347" rank="SPECIES" commonName="">
+    <instances>
+      <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
+    </instances>
+  </sensitiveSpecies>
+</sensitiveSpeciesList>

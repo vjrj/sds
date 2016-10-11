@@ -19,6 +19,7 @@ import java.util.Map;
 
 import au.org.ala.sds.model.GeoLocation;
 import au.org.ala.sds.model.Message;
+import au.org.ala.sds.util.AUWorkarounds;
 import au.org.ala.sds.util.GeoLocationHelper;
 import au.org.ala.sds.validation.*;
 import org.junit.BeforeClass;
@@ -67,7 +68,7 @@ public class PlantPestSubjectToOfficialControlTest {
         Map<String, String> facts = new HashMap<String, String>();
         facts.put(FactCollection.DECIMAL_LATITUDE_KEY, latitude);
         facts.put(FactCollection.DECIMAL_LONGITUDE_KEY, longitude);
-        facts.put(GeoLocationHelper.LGA_BOUNDARIES_LAYER,"Albury");
+        facts.put(AUWorkarounds.LGA_BOUNDARIES_LAYER,"Albury");
 
         ValidationService service = ServiceFactory.createValidationService(ss);
         ValidationOutcome outcome = service.validate(facts);
@@ -90,7 +91,7 @@ public class PlantPestSubjectToOfficialControlTest {
         Map<String, String> facts = new HashMap<String, String>();
         facts.put(FactCollection.DECIMAL_LATITUDE_KEY, latitude);
         facts.put(FactCollection.DECIMAL_LONGITUDE_KEY, longitude);
-        facts.put(GeoLocationHelper.LGA_BOUNDARIES_LAYER,"Badu");
+        facts.put(AUWorkarounds.LGA_BOUNDARIES_LAYER,"Badu");
 
         ValidationService service = ServiceFactory.createValidationService(ss);
         ValidationOutcome outcome = service.validate(facts);
@@ -115,7 +116,7 @@ public class PlantPestSubjectToOfficialControlTest {
         Map<String, String> facts = new HashMap<String, String>();
         facts.put(FactCollection.DECIMAL_LATITUDE_KEY, latitude);
         facts.put(FactCollection.DECIMAL_LONGITUDE_KEY, longitude);
-        facts.put(GeoLocationHelper.LGA_BOUNDARIES_LAYER,"Badu");
+        facts.put(AUWorkarounds.LGA_BOUNDARIES_LAYER,"Badu");
 
         ValidationService service = ServiceFactory.createValidationService(ss);
         ValidationOutcome outcome = service.validate(facts);

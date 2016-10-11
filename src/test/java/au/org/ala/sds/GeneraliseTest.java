@@ -98,7 +98,8 @@ public class GeneraliseTest {
         assertEquals("locationRemarks", "", result.get("locationRemarks"));
         assertEquals("day", "", result.get("day"));
         assertEquals("informationWithheld", "The eventID and day information has been withheld in accordance with Birds Australia data policy", result.get("informationWithheld"));
-        assertEquals("dataGeneralizations", "Location in ACT generalised to 0.1 degrees. \nSensitive in AUS [Endangered, Birds Australia]", result.get("dataGeneralizations"));
+        assertEquals("dataGeneralizations", "Location in Australian Capital Territory, Australia generalised to 0.1 degrees. \n" +
+                "Sensitive in AUS, Name: Australia, Zone: COUNTRY [Endangered, Birds Australia]", result.get("dataGeneralizations"));
 
         Map<String, String> originalSenstiveValues = (Map<String, String>) outcome.getResult().get("originalSensitiveValues");
         assertNotNull(originalSenstiveValues);
@@ -257,7 +258,7 @@ public class GeneraliseTest {
         assertEquals("Latitude", "", outcome.getResult().get("decimalLatitude"));
         assertEquals("Longitude", "", outcome.getResult().get("decimalLongitude"));
         assertEquals("InMetres", "", outcome.getResult().get("generalisationInMetres"));
-        assertEquals("Location withheld. \nSensitive in NSW [Endangered, NSW OEH]", outcome.getResult().get("dataGeneralizations"));
+        assertEquals("Location withheld. \nSensitive in NSW, Name: New South Wales, Zone: STATE [Endangered, NSW OEH]", outcome.getResult().get("dataGeneralizations"));
         assertTrue(outcome.isSensitive());
     }
 
@@ -284,7 +285,7 @@ public class GeneraliseTest {
         assertEquals("Latitude", "", outcome.getResult().get("decimalLatitude"));
         assertEquals("Longitude", "", outcome.getResult().get("decimalLongitude"));
         assertEquals("InMetres", "", outcome.getResult().get("generalisationInMetres"));
-        assertEquals("Location withheld. \nSensitive in TAS [Endangered, Tas DPIPWE]", outcome.getResult().get("dataGeneralizations"));
+        assertEquals("Location withheld. \nSensitive in TAS, Name: Tasmania, Zone: STATE [Endangered, Tas DPIPWE]", outcome.getResult().get("dataGeneralizations"));
         assertTrue(outcome.isSensitive());
     }
 
@@ -387,7 +388,8 @@ public class GeneraliseTest {
         assertEquals("Latitude", "-37.9", outcome.getResult().get("decimalLatitude"));
         assertEquals("Longitude", "145.4", outcome.getResult().get("decimalLongitude"));
         assertEquals("InMetres", "", outcome.getResult().get("generalisationInMetres"));
-        assertEquals("Location in VIC is already generalised to 0.1 degrees. \nSensitive in VIC [Endangered, Vic DSE]", outcome.getResult().get("dataGeneralizations"));
+        assertEquals("Location in Victoria, Australia is already generalised to 0.1 degrees. \n" +
+                "Sensitive in VIC, Name: Victoria, Zone: STATE [Endangered, Vic DSE]", outcome.getResult().get("dataGeneralizations"));
         assertTrue(outcome.isSensitive());
     }
 
@@ -442,7 +444,7 @@ public class GeneraliseTest {
         assertNotNull(result);
 
         assertEquals("locality", "", result.get("locality"));
-        assertEquals("dataGeneralizations", "Latitude/Longitude is missing. \nSensitive in NSW [Endangered, NSW OEH]", result.get("dataGeneralizations"));
+        assertEquals("dataGeneralizations", "Latitude/Longitude is missing. \nSensitive in NSW, Name: New South Wales, Zone: STATE [Endangered, NSW OEH]", result.get("dataGeneralizations"));
 
         Map<String, String> originalSenstiveValues = (Map<String, String>) outcome.getResult().get("originalSensitiveValues");
         assertNotNull(originalSenstiveValues);

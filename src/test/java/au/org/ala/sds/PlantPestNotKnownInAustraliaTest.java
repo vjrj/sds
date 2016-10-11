@@ -44,13 +44,12 @@ public class PlantPestNotKnownInAustraliaTest {
 
     @BeforeClass
     public static void runOnce() throws Exception {
-//        dataSource = new BasicDataSource();
-//        ((BasicDataSource) dataSource).setDriverClassName("com.mysql.jdbc.Driver");
-//        ((BasicDataSource) dataSource).setUrl("jdbc:mysql://localhost/portal");
-//        ((BasicDataSource) dataSource).setUsername("root");
-//        ((BasicDataSource) dataSource).setPassword("password");
-        System.out.println(Configuration.getInstance().getNameMatchingIndex());
+
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
+        //use test versions
+//        Configuration.getInstance().setZoneUrl(nameSearcher.getClass().getClassLoader().getResource("sensitivity-zones.xml").toURI().toString());
+//        Configuration.getInstance().setCategoriesUrl(nameSearcher.getClass().getClassLoader().getResource("sensitivity-categories.xml").toURI().toString());
+
         String uri = nameSearcher.getClass().getClassLoader().getResource("sensitive-species.xml").toURI().toString();
         finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder(uri, nameSearcher, true);
         //finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder("file:///data/sds/sensitive-species-test.xml", cbIndexSearch);

@@ -27,14 +27,14 @@ public class PlantPestUtils {
             return defaultValue;
     }
     public static String getLocalityFromMapForMessage(Map<String,String> map, List<SensitivityZone> zones){
-        return mapGetOrElse(map, "locality", mapGetOrElse(map, GeoLocationHelper.LGA_BOUNDARIES_LAYER, zones.get(0).getName()));
+        return mapGetOrElse(map, "locality", mapGetOrElse(map, AUWorkarounds.LGA_BOUNDARIES_LAYER, zones.get(0).getName()));
         //PlantPestUtils.mapGetOrElse($map, "locality", PlantPestUtils.mapGetOrElse($map, GeoLocationHelper.LGA_BOUNDARIES_LAYER,((SensitivityZone)$zones.get(0)).getName()))
     }
 
     public static String getStateFromMapForMessage(Map<String,String> map, List<SensitivityZone> zones){
         List<SensitivityZone>states = GeoLocationHelper.filterForZoneType(zones, SensitivityZone.ZoneType.STATE);
         String zoneState = states.size()>0? states.get(0).getName():"Unknown State";
-        return mapGetOrElse(map, "stateProvince", mapGetOrElse(map, GeoLocationHelper.COASTAL_WATERS_LAYER, zoneState));
+        return mapGetOrElse(map, "stateProvince", mapGetOrElse(map, AUWorkarounds.COASTAL_WATERS_LAYER, zoneState));
     }
 
     public static boolean isInsideZone(SensitiveTaxon st, String categoryId, List<SensitivityZone> zones) {

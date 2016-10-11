@@ -16,6 +16,7 @@ package au.org.ala.sds;
 
 import au.org.ala.sds.model.Message;
 import au.org.ala.sds.model.SensitiveTaxon;
+import au.org.ala.sds.util.AUWorkarounds;
 import au.org.ala.sds.util.GeoLocationHelper;
 import au.org.ala.sds.validation.*;
 import org.junit.BeforeClass;
@@ -66,7 +67,7 @@ public class PlantPestUnderEradicationTest {
         facts.put(FactCollection.DECIMAL_LATITUDE_KEY, latitude);
         facts.put(FactCollection.DECIMAL_LONGITUDE_KEY, longitude);
 
-        facts.put(GeoLocationHelper.LGA_BOUNDARIES_LAYER,"Emerald");
+        facts.put(AUWorkarounds.LGA_BOUNDARIES_LAYER,"Emerald");
         ValidationService service = ServiceFactory.createValidationService(ss);
         ValidationOutcome outcome = service.validate(facts);
 

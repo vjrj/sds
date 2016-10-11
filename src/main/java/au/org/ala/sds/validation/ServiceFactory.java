@@ -18,6 +18,7 @@ import au.org.ala.sds.model.SensitivityInstance;
 public class ServiceFactory {
 
     public static ValidationService createValidationService(SensitiveTaxon species) {
+
         ReportFactory reportFactory = new SdsReportFactory();
         ValidationService service = null;
 
@@ -28,8 +29,6 @@ public class ServiceFactory {
             KnowledgeBase knowledgeBase = KnowledgeBaseFactory.getKnowledgeBase(instance.getCategory());
             service = new PlantPestService(species, knowledgeBase, reportFactory);
         }
-
         return service;
     }
-
 }

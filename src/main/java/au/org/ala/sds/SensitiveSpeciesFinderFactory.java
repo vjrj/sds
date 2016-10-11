@@ -17,7 +17,6 @@ import org.apache.log4j.Logger;
 
 import au.org.ala.names.search.ALANameSearcher;
 import au.org.ala.sds.dao.SensitiveSpeciesDao;
-import au.org.ala.sds.dao.SensitiveSpeciesMySqlDao;
 import au.org.ala.sds.dao.SensitiveSpeciesXmlDao;
 import au.org.ala.sds.model.SensitiveTaxonStore;
 import au.org.ala.sds.util.Configuration;
@@ -32,14 +31,6 @@ public class SensitiveSpeciesFinderFactory {
 
     private static final String SPECIES_RESOURCE = "sensitive-species.xml";
 
-    public static SensitiveSpeciesFinder getSensitiveSpeciesFinder(DataSource dataSource, ALANameSearcher nameSearcher) throws Exception {
-
-        SensitiveSpeciesDao dao = new SensitiveSpeciesMySqlDao(dataSource);
-        SensitiveTaxonStore store = new SensitiveTaxonStore(dao, nameSearcher);
-        return new SensitiveSpeciesFinder(store);
-
-    }
-
     public static SensitiveSpeciesFinder getSensitiveSpeciesFinder(String dataUrl, ALANameSearcher nameSearcher) throws Exception {
         return getSensitiveSpeciesFinder(dataUrl, nameSearcher,false);
     }
@@ -51,7 +42,7 @@ public class SensitiveSpeciesFinderFactory {
         if (Configuration.getInstance().isCached() && !forceReload) {
             File cache = new File(Configuration.getInstance().getCacheUrl());
             if (cache.exists()) {
-                logger.info("Reading SensitveTaxonStore from serialized cache file " + cache.getPath());
+                logger.info("Reading SensitiveTaxonStore from serialized cache file " + cache.getPath());
                 store = getStoreFromCache(cache);
             } else {
                 store = getStoreFromUrl(dataUrl, nameSearcher);
@@ -66,15 +57,14 @@ public class SensitiveSpeciesFinderFactory {
     }
 
     public static SensitiveSpeciesFinder getSensitiveSpeciesFinder(ALANameSearcher nameSearcher) throws Exception {
-
         return getSensitiveSpeciesFinder(Configuration.getInstance().getSpeciesUrl(), nameSearcher);
-
     }
-    /*
-        TODO NC 2013-06-28: Remove the need for the cbIndexSearcher by using the supplied guid in the XML file.
-        This should be appropriate because the list will be updated more regularly and the name match supplied
-        should be the correct guid
-    */
+
+    /**
+     *   TODO NC 2013-06-28: Remove the need for the cbIndexSearcher by using the supplied guid in the XML file.
+     *   This should be appropriate because the list will be updated more regularly and the name match supplied
+     *   should be the correct guid
+     */
     private static SensitiveTaxonStore getStoreFromUrl(String dataUrl, ALANameSearcher cbIndexSearcher) throws Exception {
 
         URL url = null;
@@ -126,6 +116,5 @@ public class SensitiveSpeciesFinderFactory {
         } catch (Exception e) {
             logger.error("Error serializing SensitiveTaxonStore", e);
         }
-
     }
 }

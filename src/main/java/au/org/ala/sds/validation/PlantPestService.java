@@ -43,8 +43,6 @@ public class PlantPestService implements ValidationService {
     }
 
     /**
-     * @param taxon
-     * @param facts
      * @return
      */
     public ValidationOutcome validate(Map<String, String> biocacheData) {
@@ -66,7 +64,6 @@ public class PlantPestService implements ValidationService {
         }
 
         List<SensitivityZone> zones = SensitivityZone.getListFromString(facts.get(FactCollection.ZONES_KEY));
-
         RuleState state = new RuleState();
         String category = taxon.getInstances().get(0).getCategory().getId();
         do {

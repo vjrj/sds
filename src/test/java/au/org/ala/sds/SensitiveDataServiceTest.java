@@ -112,7 +112,8 @@ public class SensitiveDataServiceTest {
         assertEquals("locationRemarks", "", result.get("locationRemarks"));
         assertEquals("day", "", result.get("day"));
         assertEquals("informationWithheld", "The eventID and day information has been withheld in accordance with Birds Australia data policy", result.get("informationWithheld"));
-        assertEquals("dataGeneralizations", "Location in ACT generalised to 0.1 degrees. \nSensitive in AUS [Endangered, Birds Australia]", result.get("dataGeneralizations"));
+        assertEquals("dataGeneralizations", "Location in Australian Capital Territory, Australia generalised to 0.1 degrees. \n" +
+                "Sensitive in AUS, Name: Australia, Zone: COUNTRY [Endangered, Birds Australia]", result.get("dataGeneralizations"));
 
         Map<String, String> originalSenstiveValues = (Map<String, String>) outcome.getResult().get("originalSensitiveValues");
         assertNotNull(originalSenstiveValues);

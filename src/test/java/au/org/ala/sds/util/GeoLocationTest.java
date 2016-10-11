@@ -151,21 +151,20 @@ public class GeoLocationTest {
 
     @Test
     public void layersList() {
-        assertTrue(GeoLocationHelper.getGeospatialLayers().containsAll(Arrays.asList(
-                GeoLocationHelper.COASTAL_WATERS_LAYER,
-                GeoLocationHelper.LGA_BOUNDARIES_LAYER,
-                GeoLocationHelper.TSPZ_LAYER,
-                GeoLocationHelper.TSSQZ_LAYER,
-                GeoLocationHelper.FFEZ_TRI_STATE_LAYER,
-                GeoLocationHelper.PCN_VIC_LAYER,
-                GeoLocationHelper.PIZ_NSW_ALBURY_LAYER,
-                GeoLocationHelper.PIZ_NSW_SYDNEY_LAYER,
-                GeoLocationHelper.PIZ_VIC_NORTH_EAST_LAYER,
-                GeoLocationHelper.PIZ_VIC_MAROONDAH_LAYER,
-                GeoLocationHelper.PIZ_VIC_NAGAMBIE_LAYER,
-                GeoLocationHelper.PIZ_VIC_MOOROOPNA_LAYER,
-                GeoLocationHelper.PIZ_VIC_UPTON_LAYER,
-                GeoLocationHelper.PIZ_VIC_WHITEBRIDGE_LAYER,
-                GeoLocationHelper.COUNTRY_LAYER)));
+        assertTrue(Configuration.getInstance().getGeospatialLayers().containsAll(Arrays.asList(
+                AUWorkarounds.COASTAL_WATERS_LAYER,
+                AUWorkarounds.LGA_BOUNDARIES_LAYER,
+                AUWorkarounds.TSPZ_LAYER,
+                AUWorkarounds.TSSQZ_LAYER,
+                AUWorkarounds.FFEZ_TRI_STATE_LAYER,
+                AUWorkarounds.PCN_VIC_LAYER,
+                AUWorkarounds.PIZ_NSW_ALBURY_LAYER,
+                AUWorkarounds.PIZ_NSW_SYDNEY_LAYER,
+                AUWorkarounds.PIZ_VIC_NORTH_EAST_LAYER,
+                AUWorkarounds.PIZ_VIC_MAROONDAH_LAYER,
+                AUWorkarounds.PIZ_VIC_NAGAMBIE_LAYER,
+                AUWorkarounds.PIZ_VIC_MOOROOPNA_LAYER,
+                AUWorkarounds.PIZ_VIC_UPTON_LAYER,
+                AUWorkarounds.PIZ_VIC_WHITEBRIDGE_LAYER)));
     }
 }
