@@ -31,7 +31,11 @@ public class Configuration {
         logger.info("SDS using configuration from " + configFilePath);
         File configFile = new File(configFilePath);
         try {
-            config.load(new FileInputStream(configFile));
+            if(configFile.exists()){
+                config.load(new FileInputStream(configFile));
+            } else {
+                logger.warn("External config for SDS not found. Using defaults.");
+            }
             speciesUrl = config.getProperty("sds.species.data", "http://sds.ala.org.au/sensitive-species-data.xml");
             categoriesUrl = config.getProperty("sds.category.data", "http://sds.ala.org.au/sensitivity-categories.xml");
             zoneUrl = config.getProperty("sds.zone.data", "http://sds.ala.org.au/sensitivity-zones.xml");
