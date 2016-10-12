@@ -27,7 +27,7 @@ public class Configuration {
     private Configuration() throws Exception {
         config = new Properties();
 
-        String configFilePath = System.getProperty("app.config.file", "/data/sds/config/sds-config.properties");
+        String configFilePath = System.getProperty("sds.config.file", "/data/sds/config/sds-config.properties");
         logger.info("SDS using configuration from " + configFilePath);
         File configFile = new File(configFilePath);
         try {
