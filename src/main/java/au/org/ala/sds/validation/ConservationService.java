@@ -99,6 +99,7 @@ public class ConservationService implements ValidationService {
             results.put(FactCollection.DECIMAL_LONGITUDE_KEY, gl.getGeneralisedLongitude());
             originalSensitiveValues.put(FactCollection.DECIMAL_LATITUDE_KEY, gl.getOriginalLatitude());
             originalSensitiveValues.put(FactCollection.DECIMAL_LONGITUDE_KEY, gl.getOriginalLongitude());
+            results.put("generalisationToApplyInMetres", gl.getGeneralisationToApplyInMetres());
             results.put("generalisationInMetres", gl.getGeneralisationInMetres());
             results.put("dataGeneralizations", gl.getDescription() + ". " + extraDesc);
 
