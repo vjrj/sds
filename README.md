@@ -4,7 +4,7 @@
 The sensitive data service manages sensitivity concerns in the conservation and biosecurity areas.
 
 The sensitive species are supplied via external agencies and are currently stored and maintained in the list tool:
-http://lists.ala.org.au/public/speciesLists?isSDS#eq:true
+http://lists.ala.org.au/public/speciesLists?isSDS=eq:true
 
 The sds api relies on the sds-webapp2 to generate and supply XML configuration files as listed:
 http://sds.ala.org.au
