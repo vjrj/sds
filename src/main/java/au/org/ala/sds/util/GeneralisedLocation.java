@@ -120,6 +120,19 @@ public class GeneralisedLocation {
             generalisedLatitude = "";
             generalisedLongitude = "";
             description = MessageFactory.getMessageText(MessageFactory.LOCATION_WITHHELD);
+        } else if (this.locationGeneralisation.equalsIgnoreCase("100km") || this.locationGeneralisation.equalsIgnoreCase("50km")) {
+            generaliseCoordinates(1);
+            if (this.locationGeneralisation.equalsIgnoreCase("50km")){
+                generalisationToApplyInMetres = "50000";
+            } else {
+                generalisationToApplyInMetres = "100000";
+            }
+            if (isGeneralised()) {
+                description = MessageFactory.getMessageText(MessageFactory.LOCATION_GENERALISED, SensitivityZone.getZoneDescriptions(zones), "1.0");
+                generalisationInMetres = generalisationToApplyInMetres;
+            } else {
+                description = MessageFactory.getMessageText(MessageFactory.LOCATION_ALREADY_GENERALISED, SensitivityZone.getZoneDescriptions(zones), "1.0");
+            }
         } else if (this.locationGeneralisation.equalsIgnoreCase("10km")) {
             generaliseCoordinates(1);
             generalisationToApplyInMetres = "10000";
