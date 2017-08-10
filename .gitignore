@@ -1,4 +1,12 @@
-.idea
 *.iml
+target/*
+.idea/*
 target
-
+*.tgz
+.settings/
+.project
+.classpath
+*-distribution.zip
+.cache-main
+.cache-tests
+.tmpBin/

@@ -7,6 +7,7 @@ import au.org.ala.sds.util.Configuration;
 import au.org.ala.sds.validation.ValidationOutcome;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.*;
@@ -46,6 +47,7 @@ public class ScotlandTests {
         SensitivityZoneFactory.reset(); //FIXME this isnt pleasant
     }
 
+    @Ignore("layers.als.scot not available")
     @Test
     public void lookupGavia() {
         SensitiveTaxon ss = finder.findSensitiveSpecies("Gavia arctica");
