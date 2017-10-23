@@ -320,7 +320,8 @@ public class GeneraliseTest {
      */
     @Test
     public void findSpeciesByLsid() {
-        SensitiveTaxon ss = finder.findSensitiveSpeciesByLsid("urn:lsid:biodiversity.org.au:afd.taxon:1365807d-927b-4219-97bf-7e619afa5f72");
+        // Lophochroa leadbeateri (Vigors, 1831) - Major Mitchell's Cockatoo
+        SensitiveTaxon ss = finder.findSensitiveSpeciesByLsid("urn:lsid:biodiversity.org.au:afd.taxon:0217f06f-664c-4c64-bc59-1b54650fa23d");
         assertNotNull(ss);
         String latitude = "-33.630629";    // NSW
         String longitude = "150.441284";

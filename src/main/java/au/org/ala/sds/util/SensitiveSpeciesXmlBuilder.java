@@ -3,27 +3,25 @@
  */
 package au.org.ala.sds.util;
 
+import au.org.ala.sds.model.SDSSpeciesListDTO;
+import au.org.ala.sds.model.SDSSpeciesListItemDTO;
+import au.org.ala.sds.model.SensitivityZone;
+import au.org.ala.sds.model.SensitivityZoneFactory;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
+import org.gbif.api.model.checklistbank.ParsedName;
+import org.gbif.nameparser.PhraseNameParser;
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import javax.sql.DataSource;
-
-import au.org.ala.names.parser.PhraseNameParser;
-import au.org.ala.sds.model.*;
-import org.apache.commons.dbcp.BasicDataSource;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
-import org.gbif.ecat.model.ParsedName;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
-
-import au.org.ala.sds.dao.SensitiveSpeciesDao;
 
 /**
  * Builds the XML representation of the SDS rules. This is then consumed by clients
@@ -94,7 +92,7 @@ public class SensitiveSpeciesXmlBuilder {
                 sensitiveSpecies.setAttribute("family", item.getFamily() != null ? item.getFamily() : "");
                 String rank = "UNKNOWN";
                 try {
-                    ParsedName<?> pn = parser.parse(item.getName());
+                    ParsedName pn = parser.parse(item.getName());
                     if(pn != null && pn.getRank() != null) {
                         rank = pn.getRank().toString().toUpperCase();
                     }
