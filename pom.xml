@@ -27,7 +27,7 @@
     </scm>
 
     <properties>
-        <spring.version>3.0.0.RELEASE</spring.version>
+        <spring.version>3.2.9.RELEASE</spring.version>
         <drools.version>6.0.1.Final</drools.version>
         <!-- These properties are used by ala-parent-pom to validate our compliance with this JDK API and bytecode -->
         <targetJdk>1.8</targetJdk>
