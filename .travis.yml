@@ -15,7 +15,7 @@ before_install:
 - ls -laF
 - cd $TRAVIS_BUILD_DIR
 
-script: mvn clean install deploy
+script: mvn clean install deploy -DskipTests
 env:
   global:
   - secure: qr79sMF1IBiAoOLH5xzVDNELq7a/XwxxXciMg7sq1s8sLNMsk3x0k+k7jT8+BmJWD+WsmfOuJYrXUzeKQvtnnw2ypGSBgGnIVTZ0Wad6uBnKL9uCtEy2HoD2/OSMkRHV3WUm0GjN8vPdJV7XxLl7sFq14uoOFj8DGtmoj1UFr5w=
