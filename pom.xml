@@ -9,7 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>au.org.ala</groupId>
     <artifactId>sds</artifactId>
-    <version>1.4</version>
+    <version>1.4.1-SNAPSHOT</version>
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/AtlasOfLivingAustralia/sds/issues</url>
@@ -89,7 +89,7 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>jdom</groupId>
+            <groupId>org.jdom</groupId>
             <artifactId>jdom</artifactId>
             <version>1.1</version>
             <type>jar</type>
