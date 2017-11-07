@@ -36,9 +36,9 @@ public class Configuration {
             } else {
                 logger.warn("External config for SDS not found. Using defaults.");
             }
-            speciesUrl = config.getProperty("sds.species.data", "http://sds.ala.org.au/sensitive-species-data.xml");
-            categoriesUrl = config.getProperty("sds.category.data", "http://sds.ala.org.au/sensitivity-categories.xml");
-            zoneUrl = config.getProperty("sds.zone.data", "http://sds.ala.org.au/sensitivity-zones.xml");
+            speciesUrl = config.getProperty("sds.species.data", "https://sds.ala.org.au/sensitive-species-data.xml");
+            categoriesUrl = config.getProperty("sds.category.data", "https://sds.ala.org.au/sensitivity-categories.xml");
+            zoneUrl = config.getProperty("sds.zone.data", "https://sds.ala.org.au/sensitivity-zones.xml");
             layersServiceUrl = config.getProperty("layers.service.url", "http://spatial.ala.org.au/layers-service");
 
             spatialLayers = new ArrayList<String>();
@@ -121,7 +121,7 @@ public class Configuration {
     }
 
     public String getListToolUrl(){
-        return config.getProperty("list.tool.url", "http://lists.ala.org.au");
+        return config.getProperty("list.tool.url", "https://lists.ala.org.au");
     }
 
     public List<String> getGeospatialLayers() {

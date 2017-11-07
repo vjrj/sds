@@ -4,10 +4,10 @@
 The sensitive data service manages sensitivity concerns in the conservation and biosecurity areas.
 
 The sensitive species are supplied via external agencies and are currently stored and maintained in the list tool:
-http://lists.ala.org.au/public/speciesLists?isSDS=eq:true
+https://lists.ala.org.au/public/speciesLists?isSDS=eq:true
 
 The sds api relies on the sds-webapp2 to generate and supply XML configuration files as listed:
-http://sds.ala.org.au
+https://sds.ala.org.au
 
 ## LIST TOOL REQUIREMENTS
 
@@ -16,17 +16,17 @@ this metadata should be moved to the collectory we put it in the list tool to pr
 
 Region - the region of Australia in which this is applied.  This needs to be the id of one of the regions defined here:
 
-http://sds.ala.org.au/sensitivity-zones.xml
+https://sds.ala.org.au/sensitivity-zones.xml
 
 Authority - an acronym for the organisation under whose authority it is listed
 
 Category (optional) - The category for the sensitivity. When this is provided at the list level it applies to all items
-on the list (Example http://lists.ala.org.au/speciesListItem/listAuth/dr878).  If it is not supplied the list needs to have
+on the list (Example https://lists.ala.org.au/speciesListItem/listAuth/dr878).  If it is not supplied the list needs to have
 a Category property that is populated for each item (Example
-http://lists.ala.org.au/speciesListItem/listAuth/dr493).  The value of the category must be an id of one of the categories
+https://lists.ala.org.au/speciesListItem/listAuth/dr493).  The value of the category must be an id of one of the categories
 defined here:
 
-http://sds.ala.org.au/sensitivity-categories.xml
+https://sds.ala.org.au/sensitivity-categories.xml
 
 Generalisation (optional) - how to generalise the coordinates, mainly used for conservation species. Supported values include
 WITHHOLD, 10km, 1km, 100m.  If this is supplied at the list level it will apply to all species. If it has not been supplied
@@ -44,10 +44,10 @@ The SDS can be configured using an external properties file that is located in t
 to where we put the configuration files for other apps and should probably be changed. Configuration options are:
 
  * species-data - a url (either file:/// or http://) to the xml file that contains all the sensitive species. This defaults
-               to the http://sds.ala.org.au/sensitive-species-data.xml which is the correct value to use in most situations.
- * category-data - the url to the category xml file, by default http://sds.ala.org.au/sensitivity-categories.xml
+               to the https://sds.ala.org.au/sensitive-species-data.xml which is the correct value to use in most situations.
+ * category-data - the url to the category xml file, by default https://sds.ala.org.au/sensitivity-categories.xml
 
- * zone-data - thw url to the zone xml file , by default http://sds.ala.org.au/sensitivity-zones.xml
+ * zone-data - thw url to the zone xml file , by default https://sds.ala.org.au/sensitivity-zones.xml
 
  * species-cache - a boolean value to indicate whether or not to read the sensitive species from the cache file. You can set
 this to true to prevent all the sensitive species needing to be rematched. This will improve startup time for the sensitive
@@ -65,7 +65,7 @@ your sensitive data service you will need to an ALASearcher to be used:
 au.org.ala.sds.SensitiveSpeciesFinderFactory#getSensitiveSpeciesFinder(String dataUrl, ALANameSearcher nameSearcher).  The
 default value for this is /data/lucene/namematching_v13 which should be overridden with the correct value.
 
- * list-url - the URL to the list tool that is used to generate the species xml file, by default http://lists.ala.org.au
+ * list-url - the URL to the list tool that is used to generate the species xml file, by default https://lists.ala.org.au
 
  * flag-rules - a CSV value of source fields that are used as a flag rule for the plant pest rules. This is very half baked
 because there was never any indication of what the flag would be called etc.  As there are no flag rules currently provided
@@ -84,7 +84,7 @@ in a plant pest situation.
 There are 2 different classes of conservation rules, state provided and data resource provided. State provided rules need
 to be applied to all records that fall within the state that supplied the rules.  Whereas data resource provided rules
 are only applied to records that are supplied by the same data resource that supplied the rule.  At the moment we only
-have one data resource provided list and this is http://lists.ala.org.au/speciesListItem/listAuth/dr494 this is applied to
+have one data resource provided list and this is https://lists.ala.org.au/speciesListItem/listAuth/dr494 this is applied to
 all the Bird Life data resource; dr359, dr570 and dr571.
 
 When are species is identified as a conservation the SDS:
@@ -101,10 +101,10 @@ values can be provided under the correct authority.
 There are 10 categories of plant pest rules that have been defined in <TO DO LINK TO PDF doc>.
 
 * **Category 1** - Not known to occur in Australia - supplied by:
-  * http://lists.ala.org.au/speciesListItem/listAuth/dr945
-  * http://lists.ala.org.au/speciesListItem/listAuth/dr946
-  * http://lists.ala.org.au/speciesListItem/listAuth/dr873
-  * http://lists.ala.org.au/speciesListItem/listAuth/dr872
+  * https://lists.ala.org.au/speciesListItem/listAuth/dr945
+  * https://lists.ala.org.au/speciesListItem/listAuth/dr946
+  * https://lists.ala.org.au/speciesListItem/listAuth/dr873
+  * https://lists.ala.org.au/speciesListItem/listAuth/dr872
 
 According to the original documentation this needs to be applied first. But subsequent talks with APPD indicate that this
 may be a catch all rule that should be applied only if no other rules are matched. There is a test case in
@@ -123,14 +123,14 @@ meeting on the 30/01/2014
 * **Category 5** - In quarantine or other plant health zones - Currently only implemented for Bactrocera tryoni.
 
 * **Category 6** - Notifiable pests according to State or Territory legislation - supplied by
-  * [ACT](http://lists.ala.org.au/speciesListItem/listAuth/dr947)
-  * [NSW](http://lists.ala.org.au/speciesListItem/listAuth/dr877)
-  * [NT](http://lists.ala.org.au/speciesListItem/listAuth/dr878)
-  * [QLD](http://lists.ala.org.au/speciesListItem/listAuth/dr879)
-  * [SA](http://lists.ala.org.au/speciesListItem/listAuth/dr880)
-  * [TAS](http://lists.ala.org.au/speciesListItem/listAuth/dr881)
-  * [VIC](http://lists.ala.org.au/speciesListItem/listAuth/dr882)
-  * [WA](http://lists.ala.org.au/speciesListItem/listAuth/dr883)
+  * [ACT](https://lists.ala.org.au/speciesListItem/listAuth/dr947)
+  * [NSW](https://lists.ala.org.au/speciesListItem/listAuth/dr877)
+  * [NT](https://lists.ala.org.au/speciesListItem/listAuth/dr878)
+  * [QLD](https://lists.ala.org.au/speciesListItem/listAuth/dr879)
+  * [SA](https://lists.ala.org.au/speciesListItem/listAuth/dr880)
+  * [TAS](https://lists.ala.org.au/speciesListItem/listAuth/dr881)
+  * [VIC](https://lists.ala.org.au/speciesListItem/listAuth/dr882)
+  * [WA](https://lists.ala.org.au/speciesListItem/listAuth/dr883)
 
 * **Category 7** - Absent interception only - partially implemented based on flag in record but will not be fully supported because
 it is too difficult for APPD to generate lists.
