@@ -9,7 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>au.org.ala</groupId>
     <artifactId>sds</artifactId>
-    <version>1.4.2</version>
+    <version>1.4.3-SNAPSHOT</version>
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/AtlasOfLivingAustralia/sds/issues</url>
