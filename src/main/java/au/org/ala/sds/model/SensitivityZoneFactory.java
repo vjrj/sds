@@ -94,12 +94,11 @@ public class SensitivityZoneFactory {
             url = new URL(Configuration.getInstance().getZoneUrl());
             is = url.openStream();
         } catch (Exception e) {
-            logger.warn("Exception occurred getting zones list from " + url, e);
-            is = SensitivityZoneFactory.class.getClassLoader().getResourceAsStream(ZONES_RESOURCE);
+            is = SensitivityZoneFactory.class.getClassLoader().getResourceAsStream(Configuration.getInstance().getZoneUrl());
             if (is == null) {
-                logger.error("Unable to read " + ZONES_RESOURCE + " from jar file");
+                logger.error("Unable to read " + Configuration.getInstance().getZoneUrl() + " from jar file");
             } else {
-                logger.info("Reading bundled resource " + ZONES_RESOURCE + " from jar file");
+                logger.info("Reading bundled resource " + Configuration.getInstance().getZoneUrl() + " from jar file");
             }
         }
 

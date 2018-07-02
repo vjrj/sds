@@ -74,12 +74,11 @@ public class SensitiveSpeciesFinderFactory {
             url = new URL(dataUrl);
             is = url.openStream();
         } catch (Exception e) {
-            logger.warn("Exception occurred getting species list from " + dataUrl, e);
-            is = SensitiveSpeciesFinderFactory.class.getClassLoader().getResourceAsStream(SPECIES_RESOURCE);
+            is = SensitiveSpeciesFinderFactory.class.getClassLoader().getResourceAsStream(dataUrl);
             if (is == null) {
-                logger.error("Unable to read " + SPECIES_RESOURCE + " from jar file");
+                logger.error("Unable to read " + dataUrl + " from jar file or from URL");
             } else {
-                logger.info("Reading bundled resource " + SPECIES_RESOURCE + " from jar file");
+                logger.info("Reading bundled resource " + dataUrl + " from jar file");
             }
         }
 

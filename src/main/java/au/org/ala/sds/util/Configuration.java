@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -28,11 +29,17 @@ public class Configuration {
         config = new Properties();
 
         String configFilePath = System.getProperty("sds.config.file", "/data/sds/config/sds-config.properties");
-        logger.info("SDS using configuration from " + configFilePath);
-        File configFile = new File(configFilePath);
+        logger.info("Loading the SDS using configuration from " + configFilePath);
+        InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(configFilePath);
+
+        if(inputStream == null){
+            inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("." + configFilePath);
+        }
+
         try {
-            if(configFile.exists()){
-                config.load(new FileInputStream(configFile));
+            if(inputStream != null){
+                logger.info("Loading config for SDS from " + configFilePath);
+                config.load(inputStream);
             } else {
                 logger.warn("External config for SDS not found. Using defaults.");
             }
