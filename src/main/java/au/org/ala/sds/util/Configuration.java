@@ -36,6 +36,10 @@ public class Configuration {
             inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("." + configFilePath);
         }
 
+        if(inputStream == null){
+            inputStream = new FileInputStream(configFilePath);
+        }
+
         try {
             if(inputStream != null){
                 logger.info("Loading config for SDS from " + configFilePath);
