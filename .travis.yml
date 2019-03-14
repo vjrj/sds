@@ -1,6 +1,5 @@
+sudo: required
 language: java
-dist:
-  - trusty
 jdk:
   - oraclejdk8
 branches:
@@ -15,9 +14,8 @@ before_install:
 - ls -laF
 - cd $TRAVIS_BUILD_DIR
 
-script: mvn clean install
-after_success:
-- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && travis_retry mvn deploy -DskipTests
+script:
+- "[ \"${TRAVIS_PULL_REQUEST}\" = \"false\" ] && mvn clean install deploy || mvn clean install"
 
 env:
   global:
