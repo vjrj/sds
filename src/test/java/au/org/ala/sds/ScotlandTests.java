@@ -25,6 +25,7 @@ public class ScotlandTests {
     @BeforeClass
     public static void runOnce() throws Exception {
 
+        System.setProperty("sds.config.file", "/sds-test.properties");
         SensitivityZoneFactory.reset(); //FIXME this isnt pleasant
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         String uri = nameSearcher.getClass().getClassLoader().getResource("sensitive-species-scotland.xml").toURI().toString();

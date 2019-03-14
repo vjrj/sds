@@ -50,7 +50,7 @@ public class Configuration {
             speciesUrl = config.getProperty("sds.species.data", "https://sds.ala.org.au/sensitive-species-data.xml");
             categoriesUrl = config.getProperty("sds.category.data", "https://sds.ala.org.au/sensitivity-categories.xml");
             zoneUrl = config.getProperty("sds.zone.data", "https://sds.ala.org.au/sensitivity-zones.xml");
-            layersServiceUrl = config.getProperty("layers.service.url", "http://spatial.ala.org.au/layers-service");
+            layersServiceUrl = config.getProperty("layers.service.url", "https://spatial.ala.org.au/layers-service");
 
             spatialLayers = new ArrayList<String>();
             String configList = config.getProperty("sds.spatial.layers",

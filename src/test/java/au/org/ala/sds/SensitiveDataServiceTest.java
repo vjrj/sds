@@ -41,6 +41,7 @@ public class SensitiveDataServiceTest {
     @BeforeClass
     public static void runOnce() throws Exception {
 
+        System.setProperty("sds.config.file", "/sds-test.properties");
         System.out.println(Configuration.getInstance().getNameMatchingIndex());
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         //The URI to the test list - only contains entries that are used in one or more the the tests

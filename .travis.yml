@@ -8,14 +8,17 @@ branches:
   - master
 before_install:
 - mkdir -p ~/.m2; wget -q -O ~/.m2/settings.xml https://raw.githubusercontent.com/AtlasOfLivingAustralia/travis-build-configuration/master/travis_maven_settings.xml
-- sudo mkdir -p /data/lucene; sudo wget -O /data/lucene/namematching.tgz https://biocache.ala.org.au/archives/nameindexes/20160621/namematching-20160621.tgz
+- sudo mkdir -p /data/lucene; sudo wget -O /data/lucene/namematching-20190213.tgz https://biocache.ala.org.au/archives/nameindexes/20190213/namematching-20190213.tgz
 - cd /data/lucene
-- sudo tar zxvf namematching.tgz
-- sudo ln -s namematching-20160621 namematching
+- sudo tar zxvf namematching-20190213.tgz
+- sudo ln -s namematching-20190213 namematching
 - ls -laF
 - cd $TRAVIS_BUILD_DIR
 
-script: mvn clean install deploy -DskipTests
+script: mvn clean install
+after_success:
+- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && travis_retry mvn deploy -DskipTests
+
 env:
   global:
   - secure: qr79sMF1IBiAoOLH5xzVDNELq7a/XwxxXciMg7sq1s8sLNMsk3x0k+k7jT8+BmJWD+WsmfOuJYrXUzeKQvtnnw2ypGSBgGnIVTZ0Wad6uBnKL9uCtEy2HoD2/OSMkRHV3WUm0GjN8vPdJV7XxLl7sFq14uoOFj8DGtmoj1UFr5w=

@@ -51,6 +51,7 @@ public class PlantPestUnderEradicationTest {
 //        ((BasicDataSource) dataSource).setUsername("root");
 //        ((BasicDataSource) dataSource).setPassword("password");
 
+        System.setProperty("sds.config.file", "/sds-test.properties");
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         //finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder("file:///data/sds/sensitive-species-new.xml", cbIndexSearch);
         String uri = nameSearcher.getClass().getClassLoader().getResource("sensitive-species.xml").toURI().toString();

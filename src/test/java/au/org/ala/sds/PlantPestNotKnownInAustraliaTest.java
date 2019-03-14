@@ -45,6 +45,7 @@ public class PlantPestNotKnownInAustraliaTest {
     @BeforeClass
     public static void runOnce() throws Exception {
 
+        System.setProperty("sds.config.file", "/sds-test.properties");
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         //use test versions
 //        Configuration.getInstance().setZoneUrl(nameSearcher.getClass().getClassLoader().getResource("sensitivity-zones.xml").toURI().toString());

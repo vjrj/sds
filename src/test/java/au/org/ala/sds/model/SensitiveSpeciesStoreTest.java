@@ -23,6 +23,7 @@ import org.junit.Test;
 public class SensitiveSpeciesStoreTest {
     @Test
     public void testCreate() throws Exception {
+        System.setProperty("sds.config.file", "/sds-test.properties");
         SensitiveSpeciesFinder finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder(new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex()));
         SensitiveTaxon taxon = finder.findSensitiveSpecies("Acacia dealbata");
     }

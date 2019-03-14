@@ -33,6 +33,7 @@ public class SearchTest {
 
     @BeforeClass
     public static void runOnce() throws Exception {
+        System.setProperty("sds.config.file", "/sds-test.properties");
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         String uri = nameSearcher.getClass().getClassLoader().getResource("sensitive-species.xml").toURI().toString();
         finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder(uri, nameSearcher, true);
@@ -52,7 +53,7 @@ public class SearchTest {
 
     @Test
     public void lookupMitchellsByLsid() {
-        SensitiveTaxon ss = finder.findSensitiveSpeciesByLsid("urn:lsid:biodiversity.org.au:afd.taxon:1365807d-927b-4219-97bf-7e619afa5f72");
+        SensitiveTaxon ss = finder.findSensitiveSpeciesByLsid("urn:lsid:biodiversity.org.au:afd.taxon:0217f06f-664c-4c64-bc59-1b54650fa23d");
         assertNotNull(ss);
         assertEquals("Lophochroa leadbeateri", ss.getTaxonName());
     }
