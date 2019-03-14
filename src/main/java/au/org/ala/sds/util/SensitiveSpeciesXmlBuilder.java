@@ -12,12 +12,12 @@ import java.util.*;
 
 import javax.sql.DataSource;
 
-import au.org.ala.names.parser.PhraseNameParser;
 import au.org.ala.sds.model.*;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.gbif.ecat.model.ParsedName;
+import org.gbif.api.model.checklistbank.ParsedName;
+import org.gbif.nameparser.PhraseNameParser;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
@@ -94,7 +94,7 @@ public class SensitiveSpeciesXmlBuilder {
                 sensitiveSpecies.setAttribute("family", item.getFamily() != null ? item.getFamily() : "");
                 String rank = "UNKNOWN";
                 try {
-                    ParsedName<?> pn = parser.parse(item.getName());
+                    ParsedName pn = parser.parse(item.getName());
                     if(pn != null && pn.getRank() != null) {
                         rank = pn.getRank().toString().toUpperCase();
                     }

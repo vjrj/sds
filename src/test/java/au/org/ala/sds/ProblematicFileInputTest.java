@@ -26,6 +26,7 @@ public class ProblematicFileInputTest {
 
     //@BeforeClass
     public static void runOnce() throws Exception {
+        System.setProperty("sds.config.file", "/sds-test.properties");
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder("file:///data/sds/sensitive-species.xml", nameSearcher);
     }

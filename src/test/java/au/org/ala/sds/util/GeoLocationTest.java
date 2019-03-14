@@ -21,12 +21,19 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import au.org.ala.sds.model.SensitivityZone;
 import au.org.ala.sds.model.SensitivityZoneFactory;
 
 public class GeoLocationTest {
+
+    @BeforeClass
+    public static void runOnce() throws Exception {
+        System.setProperty("sds.config.file", "/sds-test.properties");
+    }
+
 
     @Test
     public void zonesContainingPoint() throws Exception {

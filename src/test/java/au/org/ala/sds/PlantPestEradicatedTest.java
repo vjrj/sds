@@ -50,6 +50,7 @@ public class PlantPestEradicatedTest {
 //        ((BasicDataSource) dataSource).setUsername("root");
 //        ((BasicDataSource) dataSource).setPassword("password");
 
+        System.setProperty("sds.config.file", "/sds-test.properties");
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         //finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder("file:///data/sds/sensitive-species-new.xml", cbIndexSearch);
         String uri = nameSearcher.getClass().getClassLoader().getResource("sensitive-species.xml").toURI().toString();
@@ -104,8 +105,8 @@ public class PlantPestEradicatedTest {
         assertTrue(outcome.isLoadable());
         assertTrue(outcome.isControlledAccess());
         //test for the correct messages
-        assertEquals(MessageFactory.getMessageText(MessageFactory.PLANT_PEST_MSG_CAT2_B1, "Xanthomonas axonopodis citri","Emerald"),outcome.getReport().getAssertion());
-        assertTrue(outcome.getReport().getMessages().get(0).getMessageText().contains("Your record Xanthomonas axonopodis citri,2004-01-29 and Emerald has been forwarded to a secure view with the Atlas of Living Australia"));
+        assertEquals(MessageFactory.getMessageText(MessageFactory.PLANT_PEST_MSG_CAT2_B1, "Xanthomonas citri (ex Hasse 1915) Gabriel et al. subsp. citri 2007","Emerald"),outcome.getReport().getAssertion());
+        assertTrue(outcome.getReport().getMessages().get(0).getMessageText().contains("Your record Xanthomonas citri (ex Hasse 1915) Gabriel et al. subsp. citri 2007,2004-01-29 and Emerald has been forwarded to a secure view with the Atlas of Living Australia"));
 
     }
 
@@ -187,6 +188,6 @@ public class PlantPestEradicatedTest {
         assertTrue(outcome.isLoadable());
         assertTrue(outcome.isControlledAccess());
         assertTrue(outcome.getReport().getMessages().get(0).getMessageText().contains("and Emerald has been forwarded to a secure view with the Atlas of Living Australia"));
-        assertEquals(MessageFactory.getMessageText(MessageFactory.PLANT_PEST_MSG_CAT2_A1, "Xanthomonas axonopodis citri"),outcome.getReport().getAssertion());
+        assertEquals(MessageFactory.getMessageText(MessageFactory.PLANT_PEST_MSG_CAT2_A1, "Xanthomonas citri (ex Hasse 1915) Gabriel et al. subsp. citri 2007"),outcome.getReport().getAssertion());
     }
 }
