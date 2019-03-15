@@ -24,6 +24,9 @@ public class SensitiveSpeciesStoreTest {
     @Test
     public void testCreate() throws Exception {
         System.setProperty("sds.config.file", "/sds-test.properties");
+        Configuration.getInstance().setSpeciesUrl(SensitiveSpeciesStoreTest.class.getResource("/sensitive-species.xml").toExternalForm());
+        Configuration.getInstance().setZoneUrl(SensitiveSpeciesStoreTest.class.getResource("/sensitivity-zones.xml").toExternalForm());
+        Configuration.getInstance().setCategoriesUrl(SensitiveSpeciesStoreTest.class.getResource("/sensitivity-categories.xml").toExternalForm());
         SensitiveSpeciesFinder finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder(new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex()));
         SensitiveTaxon taxon = finder.findSensitiveSpecies("Acacia dealbata");
     }

@@ -140,12 +140,12 @@
       <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="1km" zone="Scotland" />
     </instances>
   </sensitiveSpecies>
-  <sensitiveSpecies name="Zygaena viciae argyllensis" family="Zygaenidae" guid="NBNSYS0000005191" rank="INFRASPECIFICNAME" commonName="New Forest Burnet Moth">
+  <sensitiveSpecies name="Zygaena viciae argyllensis" family="Zygaenidae" guid="NBNSYS0000005191" rank="INFRASPECIFIC_NAME" commonName="New Forest Burnet Moth">
     <instances>
       <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
     </instances>
   </sensitiveSpecies>
-  <sensitiveSpecies name="Zygaena lonicerae jocelynae" family="Zygaenidae" guid="NBNSYS0000005678" rank="INFRASPECIFICNAME" commonName="">
+  <sensitiveSpecies name="Zygaena lonicerae jocelynae" family="Zygaenidae" guid="NBNSYS0000005678" rank="INFRASPECIFIC_NAME" commonName="">
     <instances>
       <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="2km" zone="Scotland" />
     </instances>
@@ -265,7 +265,7 @@
       <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="10km" zone="Scotland" />
     </instances>
   </sensitiveSpecies>
-  <sensitiveSpecies name="Zygaena loti scotica" family="Zygaenidae" guid="NHMSYS0000504733" rank="INFRASPECIFICNAME" commonName="Slender Scotch Burnet Moth">
+  <sensitiveSpecies name="Zygaena loti scotica" family="Zygaenidae" guid="NHMSYS0000504733" rank="INFRASPECIFIC_NAME" commonName="Slender Scotch Burnet Moth">
     <instances>
       <conservationInstance category="" authority="Scottish Natural Heritage" dataResourceId="drt1454949464060" generalisation="2km" zone="Scotland" />
     </instances>
