@@ -32,7 +32,7 @@ public class SensitiveTaxon implements Serializable, Comparable<SensitiveTaxon> 
 
     protected static final Logger logger = Logger.getLogger(SensitiveTaxon.class);
 
-    public enum Rank { SUBSPECIES, SPECIES, GENUS, FAMILY, UNKNOWN, UNRANKED, INFRASPECIFICNAME, CULTIVAR, FORM, VARIETY, SUBVARIETY, SUPERFAMILY, SUBFAMILY };
+    public enum Rank { SUBSPECIES, SPECIES, GENUS, FAMILY, UNKNOWN, UNRANKED, INFRAGENERIC_NAME, INFRASPECIFIC_NAME, INFRASUBSPECIFIC_NAME, CULTIVAR, FORM, FORMA_SPECIALIS, VARIETY, SUBVARIETY, SUPERFAMILY, SUBFAMILY, RACE, SEROVAR, BIOVAR, PATHOVAR, STRAIN };
 
     private final String name;
     private String family;
