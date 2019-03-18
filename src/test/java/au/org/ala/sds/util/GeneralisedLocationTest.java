@@ -1,20 +1,14 @@
 package au.org.ala.sds.util;
 
-import static org.junit.Assert.assertEquals;
+import au.org.ala.names.model.RankType;
+import au.org.ala.sds.model.*;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Test;
-
-import au.org.ala.sds.model.ConservationInstance;
-import au.org.ala.sds.model.SensitiveTaxon;
-import au.org.ala.sds.model.SensitivityCategory;
-import au.org.ala.sds.model.SensitivityCategoryFactory;
-import au.org.ala.sds.model.SensitivityInstance;
-import au.org.ala.sds.model.SensitivityZone;
-import au.org.ala.sds.model.SensitivityZoneFactory;
+import static org.junit.Assert.assertEquals;
 
 
 public class GeneralisedLocationTest {
@@ -38,7 +32,7 @@ public class GeneralisedLocationTest {
     static SensitivityCategory NEAR_THREATENED;
 
     static {
-        st = new SensitiveTaxon("Crex crex", SensitiveTaxon.Rank.SPECIES);
+        st = new SensitiveTaxon("Crex crex", RankType.SPECIES);
         instances = st.getInstances();
         ACT = SensitivityZoneFactory.getZone(SensitivityZone.ACT);
         NSW = SensitivityZoneFactory.getZone(SensitivityZone.NSW);

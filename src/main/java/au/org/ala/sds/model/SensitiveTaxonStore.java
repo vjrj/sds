@@ -14,12 +14,10 @@
  ***************************************************************************/
 package au.org.ala.sds.model;
 
-import au.org.ala.names.model.LinnaeanRankClassification;
-import au.org.ala.names.model.NameSearchResult;
+import au.org.ala.names.model.*;
 import au.org.ala.names.search.ALANameSearcher;
 import au.org.ala.names.search.SearchResultException;
 import au.org.ala.sds.dao.SensitiveSpeciesDao;
-import au.org.ala.sds.model.SensitiveTaxon.Rank;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -36,6 +34,8 @@ public class SensitiveTaxonStore implements Serializable {
     private static final long serialVersionUID = 1L;
 
     protected static final Logger logger = Logger.getLogger(SensitiveTaxonStore.class);
+
+    protected static final Set<MatchType> INACCURATE_MATCH = new HashSet<>(Arrays.asList(MatchType.RECURSIVE, MatchType.SOUNDEX, MatchType.VERNACULAR));
 
     private final List<SensitiveTaxon> taxonList;
 
@@ -56,7 +56,7 @@ public class SensitiveTaxonStore implements Serializable {
         List<SensitiveTaxon> additionalAcceptedTaxons = new ArrayList<SensitiveTaxon>();
 
         for (SensitiveTaxon st : taxonList) {
-            NameSearchResult match = lookupName(st);
+            NameSearchResult match = lookupName(st.getTaxonName(), st.getFamily(), st.getRank());
             if (match != null) {
                 st.setLsid(match.getLsid());
                 if (match.isSynonym()) {
@@ -66,7 +66,7 @@ public class SensitiveTaxonStore implements Serializable {
                         logger.info("Sensitive species '" + st.getName() + "' is not accepted name - using '" + acceptedName + "'");
                         SensitiveTaxon acceptedTaxon = findByExactMatch(acceptedName);
                         if (acceptedTaxon == null) {
-                            acceptedTaxon = new SensitiveTaxon(acceptedName, StringUtils.contains(acceptedName, ' ') ? Rank.SPECIES : Rank.GENUS);
+                            acceptedTaxon = new SensitiveTaxon(acceptedName, StringUtils.contains(acceptedName, ' ') ? RankType.SPECIES : RankType.GENUS);
                             acceptedTaxon.setLsid(accepted.getLsid());
                             if (!additionalAcceptedTaxons.contains(acceptedTaxon)) {
                                 additionalAcceptedTaxons.add(acceptedTaxon);
@@ -150,7 +150,7 @@ public class SensitiveTaxonStore implements Serializable {
 
     public SensitiveTaxon findByExactMatch(String name) {
         // Do binary search
-        int idx = Collections.binarySearch(taxonList, new SensitiveTaxon(name, StringUtils.contains(name, ' ') ? Rank.SPECIES : Rank.GENUS));
+        int idx = Collections.binarySearch(taxonList, new SensitiveTaxon(name, StringUtils.contains(name, ' ') ? RankType.SPECIES : RankType.GENUS));
         if (idx >= 0 && taxonList.get(idx).getName().equalsIgnoreCase(name)) {
             return taxonList.get(idx);
         } else {
@@ -162,12 +162,10 @@ public class SensitiveTaxonStore implements Serializable {
         NameSearchResult match = null;
         if (namesSearcher != null) {
             try {
-                match = namesSearcher.searchForRecord(name, null);
+                match = this.lookupName(name, null, null);
                 if (match != null && match.isSynonym()) {
                     match = getAcceptedNameFromSynonym(match);
                 }
-            } catch (SearchResultException e) {
-                logger.debug("'" + name + "' - " + e.getMessage());
             } catch (RuntimeException e) {
                 logger.error("'" + name + "'", e);
             }
@@ -176,21 +174,27 @@ public class SensitiveTaxonStore implements Serializable {
         return match;
     }
 
-    private NameSearchResult lookupName(SensitiveTaxon st) {
-        String name = null;
+    private NameSearchResult lookupName(String name, String family, RankType rank) {
         NameSearchResult match = null;
         if (namesSearcher != null) {
             try {
-                name = st.getTaxonName();
-                LinnaeanRankClassification lrc = new LinnaeanRankClassification(null, null, null, null, st.getFamily().equals("") ? null : st.getFamily() , null, name);
-                match = namesSearcher.searchForRecord(name, lrc, null);
-            } catch (SearchResultException e) {
-                logger.debug("'" + name + "' - " + e.getMessage());
-            } catch (RuntimeException e) {
-                logger.error("'" + name + "'", e);
+                LinnaeanRankClassification lrc = new LinnaeanRankClassification(null, null, null, null, family, null, name);
+                lrc.setRank(rank == null ? null : rank.getRank());
+                MetricsResultDTO metrics = namesSearcher.searchForRecordMetrics(lrc, false, false);
+                if (metrics != null) {
+                    match = metrics.getResult();
+                    if (match != null && INACCURATE_MATCH.contains(match.getMatchType())) {
+                        logger.error("Inaccurate match type " + match.getMatchType() + " for " + name);
+                        match = null;
+                    }
+                    if (!metrics.getErrors().contains(ErrorType.NONE)){
+                        logger.warn("Name search for " + name + " contains flags " + metrics.getErrors());
+                    }
+                }
+            } catch (SearchResultException ex) {
+                logger.error("Error searching for " + name, ex);
             }
         }
-
         return match;
     }
 
