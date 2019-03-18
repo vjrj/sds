@@ -14,13 +14,14 @@
  ***************************************************************************/
 package au.org.ala.sds.model;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
+import au.org.ala.names.model.RankType;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.log4j.Logger;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -32,18 +33,16 @@ public class SensitiveTaxon implements Serializable, Comparable<SensitiveTaxon> 
 
     protected static final Logger logger = Logger.getLogger(SensitiveTaxon.class);
 
-    public enum Rank { SUBSPECIES, SPECIES, GENUS, FAMILY, UNKNOWN, UNRANKED, INFRAGENERIC_NAME, INFRASPECIFIC_NAME, INFRASUBSPECIFIC_NAME, CULTIVAR, FORM, FORMA_SPECIALIS, VARIETY, SUBVARIETY, SUPERFAMILY, SUBFAMILY, RACE, SEROVAR, BIOVAR, PATHOVAR, STRAIN };
-
     private final String name;
     private String family;
     private String commonName;
-    private final Rank rank;
+    private final RankType rank;
     private String acceptedName;            // Has a value if name is a synonym - otherwise null
     private SensitiveTaxon acceptedTaxon;   //
     private String lsid;
     private final List<SensitivityInstance> instances;
 
-    public SensitiveTaxon(String taxon, Rank rank) {
+    public SensitiveTaxon(String taxon, RankType rank) {
         super();
         this.name = taxon;
         this.rank = rank;
@@ -70,7 +69,7 @@ public class SensitiveTaxon implements Serializable, Comparable<SensitiveTaxon> 
         this.commonName = commonName;
     }
 
-    public Rank getRank() {
+    public RankType getRank() {
         return this.rank;
     }
 
@@ -219,6 +218,17 @@ public class SensitiveTaxon implements Serializable, Comparable<SensitiveTaxon> 
 
     @Override
     public String toString() {
-        return getTaxonName() + " (" + this.rank + ")";
+        StringBuilder builder = new StringBuilder();
+        String name = this.getTaxonName();
+        String family = this.getFamily();
+        builder.append(name);
+        builder.append(" (");
+        if (family != null && !family.isEmpty()) {
+            builder.append(family);
+            builder.append(", ");
+        }
+        builder.append(this.getRank());
+        builder.append(")");
+        return builder.toString();
     }
 }
