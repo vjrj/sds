@@ -5,14 +5,14 @@
     <sensitivity-zone id="NZ" name="New Zealand" type="Country" layerId="cl932" />
     <sensitivity-zone id="NOTAUS" name="Outside Australia" type="Country" layerId="cl932" />
 
-    <sensitivity-zone id="ACT" name="Australian Capital Territory" type="State" layerId="cl22" />
-    <sensitivity-zone id="NSW" name="New South Wales" type="State" layerId="cl22"/>
-    <sensitivity-zone id="QLD" name="Queensland" type="State" layerId="cl22"/>
-    <sensitivity-zone id="VIC" name="Victoria" type="State" layerId="cl22"/>
-    <sensitivity-zone id="TAS" name="Tasmania" type="State" layerId="cl22"/>
-    <sensitivity-zone id="SA" name="South Australia" type="State" layerId="cl22"/>
-    <sensitivity-zone id="WA" name="Western Australia" type="State" layerId="cl22"/>
-    <sensitivity-zone id="NT" name="Northern Territory" type="State" layerId="cl22"/>
+    <sensitivity-zone id="ACT" name="Australian Capital Territory" type="State" layerId="cl10925" />
+    <sensitivity-zone id="NSW" name="New South Wales" type="State" layerId="cl10925"/>
+    <sensitivity-zone id="QLD" name="Queensland" type="State" layerId="cl10925"/>
+    <sensitivity-zone id="VIC" name="Victoria" type="State" layerId="cl10925"/>
+    <sensitivity-zone id="TAS" name="Tasmania" type="State" layerId="cl10925"/>
+    <sensitivity-zone id="SA" name="South Australia" type="State" layerId="cl10925"/>
+    <sensitivity-zone id="WA" name="Western Australia" type="State" layerId="cl10925"/>
+    <sensitivity-zone id="NT" name="Northern Territory" type="State" layerId="cl10925"/>
 
     <sensitivity-zone id="CC" name="Cocos (Keeling) Islands" type="External_territory" layerId="cl916"/>
     <sensitivity-zone id="CX" name="Christmas Island" type="External_territory" layerId="cl932"/>
