@@ -54,7 +54,7 @@ public class Configuration {
 
             spatialLayers = new ArrayList<String>();
             String configList = config.getProperty("sds.spatial.layers",
-                    "cl932,cl927,cl23,cl937,cl941,cl938,cl939,cl936,cl940,cl963,cl962,cl961,cl960,cl964,cl965,cl22");
+                    "cl932,cl927,cl23,cl937,cl941,cl938,cl939,cl936,cl940,cl963,cl962,cl961,cl960,cl964,cl965,cl22,cl10925");
             for(String layerId : configList.split(",")){
                 spatialLayers.add(layerId.trim());
             }
