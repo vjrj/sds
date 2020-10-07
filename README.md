@@ -55,6 +55,8 @@ data service. The disadvantage to this is you will not automatically get the new
 
  * cache-data - the location in which to cache the sensitive species data, by default /data/sds/species-cache.ser
 
+ * spatial-layer-list - the list of spatial layer ids that will be used for spatial layer processing. The default value for the property is `cl932,cl927,cl23,cl937,cl941,cl938,cl939,cl936,cl940,cl963,cl962,cl961,cl960,cl964,cl965,cl22,cl10925` and can be configured using the property key `sds.spatial.layers`.
+
  * spatial-layer-ws - the URL to test for intersection of spatial layers. This is used by the SDS if the required layer values
 are not provided in the data.  The biocache will always provide the layer information to prevent WS bottleneck. The default
 value for the property is http://spatial.ala.org.au/layers-service/intersect/
