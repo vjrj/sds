@@ -4,6 +4,7 @@ import au.org.ala.names.search.ALANameSearcher;
 import au.org.ala.sds.model.SensitiveTaxon;
 import au.org.ala.sds.model.SensitivityZoneFactory;
 import au.org.ala.sds.util.Configuration;
+import au.org.ala.sds.util.TestUtils;
 import au.org.ala.sds.validation.ValidationOutcome;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -25,7 +26,7 @@ public class ScotlandTests {
     @BeforeClass
     public static void runOnce() throws Exception {
 
-        System.setProperty("sds.config.file", "/sds-test.properties");
+        TestUtils.initConfig();
         SensitivityZoneFactory.reset(); //FIXME this isnt pleasant
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         String uri = nameSearcher.getClass().getClassLoader().getResource("sensitive-species-scotland.xml").toURI().toString();

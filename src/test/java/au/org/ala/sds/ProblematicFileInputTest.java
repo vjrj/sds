@@ -2,6 +2,7 @@ package au.org.ala.sds;
 
 import java.util.Map;
 
+import au.org.ala.sds.util.TestUtils;
 import org.apache.commons.lang.StringUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class ProblematicFileInputTest {
 
     //@BeforeClass
     public static void runOnce() throws Exception {
-        System.setProperty("sds.config.file", "/sds-test.properties");
+        TestUtils.initConfig();
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder("file:///data/sds/sensitive-species.xml", nameSearcher);
     }

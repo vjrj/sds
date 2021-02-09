@@ -14,6 +14,7 @@
  ***************************************************************************/
 package au.org.ala.sds.model;
 
+import au.org.ala.sds.util.TestUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -23,7 +24,7 @@ import static org.junit.Assert.assertTrue;
 public class SensitivityZoneTest {
     @BeforeClass
     public static void runOnce() throws Exception {
-        System.setProperty("sds.config.file", "/sds-test.properties");
+        TestUtils.initConfig();
     }
 
     @Test

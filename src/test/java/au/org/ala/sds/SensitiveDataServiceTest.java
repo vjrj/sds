@@ -16,6 +16,7 @@ package au.org.ala.sds;
 
 import au.org.ala.names.search.ALANameSearcher;
 import au.org.ala.sds.util.Configuration;
+import au.org.ala.sds.util.TestUtils;
 import au.org.ala.sds.validation.FactCollection;
 import au.org.ala.sds.validation.MessageFactory;
 import au.org.ala.sds.validation.ValidationOutcome;
@@ -41,7 +42,7 @@ public class SensitiveDataServiceTest {
     @BeforeClass
     public static void runOnce() throws Exception {
 
-        System.setProperty("sds.config.file", "/sds-test.properties");
+        TestUtils.initConfig();
         System.out.println(Configuration.getInstance().getNameMatchingIndex());
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         //The URI to the test list - only contains entries that are used in one or more the the tests
