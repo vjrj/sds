@@ -31,7 +31,7 @@ public class GeoLocationTest {
 
     @BeforeClass
     public static void runOnce() throws Exception {
-        System.setProperty("sds.config.file", "/sds-test.properties");
+        TestUtils.initConfig();
     }
 
 

@@ -17,6 +17,7 @@ package au.org.ala.sds;
 import au.org.ala.names.search.ALANameSearcher;
 import au.org.ala.sds.model.SensitiveTaxon;
 import au.org.ala.sds.util.Configuration;
+import au.org.ala.sds.util.TestUtils;
 import au.org.ala.sds.validation.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -34,8 +35,7 @@ public class ExoticBiologicalControlTest {
 
     @BeforeClass
     public static void runOnce() throws Exception {
-
-        System.setProperty("sds.config.file", "/sds-test.properties");
+        TestUtils.initConfig();
         System.out.println(Configuration.getInstance().getNameMatchingIndex());
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         //The URI to the test list - only contains entries that are used in one or more the the tests

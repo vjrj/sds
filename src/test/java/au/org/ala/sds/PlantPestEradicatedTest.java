@@ -20,6 +20,7 @@ import java.util.Map;
 import au.org.ala.sds.model.Message;
 import au.org.ala.sds.util.AUWorkarounds;
 import au.org.ala.sds.util.GeoLocationHelper;
+import au.org.ala.sds.util.TestUtils;
 import au.org.ala.sds.validation.*;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -50,7 +51,9 @@ public class PlantPestEradicatedTest {
 //        ((BasicDataSource) dataSource).setUsername("root");
 //        ((BasicDataSource) dataSource).setPassword("password");
 
-        System.setProperty("sds.config.file", "/sds-test.properties");
+        TestUtils.initConfig();
+        Configuration.getInstance().setZoneUrl(PlantPestEradicatedTest.class.getResource("/sensitivity-zones.xml").toExternalForm());
+        Configuration.getInstance().setCategoriesUrl(PlantPestEradicatedTest.class.getResource("/sensitivity-categories.xml").toExternalForm());
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         //finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder("file:///data/sds/sensitive-species-new.xml", cbIndexSearch);
         String uri = nameSearcher.getClass().getClassLoader().getResource("sensitive-species.xml").toURI().toString();

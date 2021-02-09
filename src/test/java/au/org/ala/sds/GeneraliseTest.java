@@ -22,6 +22,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashMap;
 import java.util.Map;
 
+import au.org.ala.sds.util.TestUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -51,7 +52,7 @@ public class GeneraliseTest {
 //        ((BasicDataSource) dataSource).setUsername("root");
 //        ((BasicDataSource) dataSource).setPassword("password");
 
-        System.setProperty("sds.config.file", "/sds-test.properties");
+        TestUtils.initConfig();
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         //finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder(cbIndexSearch);
         String uri = nameSearcher.getClass().getClassLoader().getResource("sensitive-species.xml").toURI().toString();

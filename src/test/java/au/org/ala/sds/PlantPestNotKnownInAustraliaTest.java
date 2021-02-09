@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import au.org.ala.sds.model.Message;
+import au.org.ala.sds.util.TestUtils;
 import au.org.ala.sds.validation.*;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -45,7 +46,7 @@ public class PlantPestNotKnownInAustraliaTest {
     @BeforeClass
     public static void runOnce() throws Exception {
 
-        System.setProperty("sds.config.file", "/sds-test.properties");
+        TestUtils.initConfig();
         nameSearcher = new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex());
         //use test versions
 //        Configuration.getInstance().setZoneUrl(nameSearcher.getClass().getClassLoader().getResource("sensitivity-zones.xml").toURI().toString());

@@ -18,15 +18,13 @@ import au.org.ala.names.search.ALANameSearcher;
 import au.org.ala.sds.SensitiveSpeciesFinder;
 import au.org.ala.sds.SensitiveSpeciesFinderFactory;
 import au.org.ala.sds.util.Configuration;
+import au.org.ala.sds.util.TestUtils;
 import org.junit.Test;
 
 public class SensitiveSpeciesStoreTest {
     @Test
     public void testCreate() throws Exception {
-        System.setProperty("sds.config.file", "/sds-test.properties");
-        Configuration.getInstance().setSpeciesUrl(SensitiveSpeciesStoreTest.class.getResource("/sensitive-species.xml").toExternalForm());
-        Configuration.getInstance().setZoneUrl(SensitiveSpeciesStoreTest.class.getResource("/sensitivity-zones.xml").toExternalForm());
-        Configuration.getInstance().setCategoriesUrl(SensitiveSpeciesStoreTest.class.getResource("/sensitivity-categories.xml").toExternalForm());
+        TestUtils.initConfig();
         SensitiveSpeciesFinder finder = SensitiveSpeciesFinderFactory.getSensitiveSpeciesFinder(new ALANameSearcher(Configuration.getInstance().getNameMatchingIndex()));
         SensitiveTaxon taxon = finder.findSensitiveSpecies("Acacia dealbata");
     }
