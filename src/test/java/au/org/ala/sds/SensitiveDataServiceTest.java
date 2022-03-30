@@ -24,6 +24,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -99,34 +100,36 @@ public class SensitiveDataServiceTest {
         facts.put("month", "10");
         facts.put("year", "2010");
         facts.put("verbatimCoordinates", "These need to be withheld");
+        for (Locale loc : new Locale[]{Locale.ENGLISH, Locale.FRENCH, Locale.forLanguageTag("es-ES") }) {
+            Locale.setDefault(loc);
+            ValidationOutcome outcome = sds.testMapDetails(finder, facts, "Crex crex", "urn:lsid:biodiversity.org.au:afd.taxon:2ef4ac9c-7dfb-4447-8431-e337355ac1ca");
 
-        ValidationOutcome outcome = sds.testMapDetails(finder,facts,"Crex crex", "urn:lsid:biodiversity.org.au:afd.taxon:2ef4ac9c-7dfb-4447-8431-e337355ac1ca");
+            assertTrue(outcome.isValid());
+            assertTrue(outcome.isSensitive());
+            Map<String, Object> result = outcome.getResult();
+            assertNotNull(result);
 
-        assertTrue(outcome.isValid());
-        assertTrue(outcome.isSensitive());
-        Map<String, Object> result = outcome.getResult();
-        assertNotNull(result);
+            assertEquals("Latitude", "-35.3", result.get("decimalLatitude"));
+            assertEquals("Longitude", "149.1", result.get("decimalLongitude"));
+            assertEquals("InMetres", "10000", result.get("generalisationInMetres"));
+            assertEquals("eventID", "", result.get("eventID"));
+            assertEquals("locationRemarks", "", result.get("locationRemarks"));
+            assertEquals("day", "", result.get("day"));
+            assertEquals("informationWithheld", "The eventID and day information has been withheld in accordance with Birds Australia data policy", result.get("informationWithheld"));
+            assertEquals("dataGeneralizations", "Location in Australian Capital Territory, Australia generalised to 0.1 degrees. \n" +
+              "Sensitive in AUS, Name: Australia, Zone: COUNTRY [Endangered, Birds Australia]", result.get("dataGeneralizations"));
 
-        assertEquals("Latitude", "-35.3", result.get("decimalLatitude"));
-        assertEquals("Longitude", "149.1", result.get("decimalLongitude"));
-        assertEquals("InMetres", "10000", result.get("generalisationInMetres"));
-        assertEquals("eventID", "", result.get("eventID"));
-        assertEquals("locationRemarks", "", result.get("locationRemarks"));
-        assertEquals("day", "", result.get("day"));
-        assertEquals("informationWithheld", "The eventID and day information has been withheld in accordance with Birds Australia data policy", result.get("informationWithheld"));
-        assertEquals("dataGeneralizations", "Location in Australian Capital Territory, Australia generalised to 0.1 degrees. \n" +
-                "Sensitive in AUS, Name: Australia, Zone: COUNTRY [Endangered, Birds Australia]", result.get("dataGeneralizations"));
+            Map<String, String> originalSenstiveValues = (Map<String, String>) outcome.getResult().get("originalSensitiveValues");
+            assertNotNull(originalSenstiveValues);
 
-        Map<String, String> originalSenstiveValues = (Map<String, String>) outcome.getResult().get("originalSensitiveValues");
-        assertNotNull(originalSenstiveValues);
+            assertTrue(outcome.getResult().get("verbatimCoordinates").toString().length() == 0);
 
-        assertTrue(outcome.getResult().get("verbatimCoordinates").toString().length()==0);
-
-        assertEquals("Original latitude", "-35.276771", originalSenstiveValues.get("decimalLatitude"));
-        assertEquals("Original longitude", "149.112539", originalSenstiveValues.get("decimalLongitude"));
-        assertEquals("Original eventID", "1234", originalSenstiveValues.get("eventID"));
-        assertEquals("Original locationRemarks", "remarks", originalSenstiveValues.get("locationRemarks"));
-        assertEquals("Original day", "10", originalSenstiveValues.get("day"));
+            assertEquals("Original latitude", "-35.276771", originalSenstiveValues.get("decimalLatitude"));
+            assertEquals("Original longitude", "149.112539", originalSenstiveValues.get("decimalLongitude"));
+            assertEquals("Original eventID", "1234", originalSenstiveValues.get("eventID"));
+            assertEquals("Original locationRemarks", "remarks", originalSenstiveValues.get("locationRemarks"));
+            assertEquals("Original day", "10", originalSenstiveValues.get("day"));
+        }
     }
 
     @Test

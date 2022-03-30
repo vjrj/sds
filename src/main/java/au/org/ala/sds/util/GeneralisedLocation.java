@@ -16,6 +16,7 @@ package au.org.ala.sds.util;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -188,7 +189,7 @@ public class GeneralisedLocation {
         } else {
             BigDecimal bd = new BigDecimal(number);
             if (bd.scale() > decimalPlaces) {
-                return String.format("%." + decimalPlaces + "f", bd);
+                return String.format(Locale.ROOT,"%." + decimalPlaces + "f", bd);
             } else {
                 return number;
             }
