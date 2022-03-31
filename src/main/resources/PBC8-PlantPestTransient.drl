@@ -25,7 +25,7 @@ rule "Transient: non actionable"
         $st : SensitiveTaxon()
         $zones : List()
         $date : Date()
-        eval(SensitivityZone.isInAustralia($zones) && PlantPestUtils.isANonActionableTransientEvent($st, SensitivityCategory.PLANT_PEST_NON_TRANSIENT, $date, $zones))
+        eval(SensitivityZone.isInAtlasCountry($zones) && PlantPestUtils.isANonActionableTransientEvent($st, SensitivityCategory.PLANT_PEST_NON_TRANSIENT, $date, $zones))
     then
         //the record can be loaded but it needs restricted attributes.
         state.setLoadable(true);
@@ -50,7 +50,7 @@ rule "Not Transient"
         $st : SensitiveTaxon()
         $zones : List()
         $date : Date()
-        eval(!SensitivityZone.isInAustralia($zones) || !PlantPestUtils.isANonActionableTransientEvent($st, SensitivityCategory.PLANT_PEST_NON_TRANSIENT, $date, $zones))
+        eval(!SensitivityZone.isInAtlasCountry($zones) || !PlantPestUtils.isANonActionableTransientEvent($st, SensitivityCategory.PLANT_PEST_NON_TRANSIENT, $date, $zones))
     then
         logger.debug("PBC8 Rule Not applicable in this situation - checking PBC1");
         state.setDelegateRules("PBC1");

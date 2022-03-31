@@ -157,11 +157,11 @@ public class SensitiveTaxon implements Serializable, Comparable<SensitiveTaxon> 
             if (zones.contains(si.getZone())) {
                 instanceList.add(si);
             } else if (
-                    SensitivityZoneFactory.getZone(SensitivityZone.AUS) != null &&
+                    SensitivityZoneFactory.getZone(SensitivityZone.ATLAS_COUNTRY_CODE) != null &&
                             si != null &&
                             si.getZone() != null &&
-                    si.getZone().equals(SensitivityZoneFactory.getZone(SensitivityZone.AUS)) &&
-                    SensitivityZone.isInAustralia(zones)
+                    si.getZone().equals(SensitivityZoneFactory.getZone(SensitivityZone.ATLAS_COUNTRY_CODE)) &&
+                    SensitivityZone.isInAtlasCountry(zones)
                 ) {
                 instanceList.add(si);
             }
@@ -180,7 +180,7 @@ public class SensitiveTaxon implements Serializable, Comparable<SensitiveTaxon> 
             if (state == si.getZone()) {
                 instance = si;
             } else {
-                if (si.getZone() == SensitivityZoneFactory.getZone(SensitivityZone.AUS)) {
+                if (si.getZone() == SensitivityZoneFactory.getZone(SensitivityZone.ATLAS_COUNTRY_CODE)) {
                     ausInstance = si;
                 }
             }

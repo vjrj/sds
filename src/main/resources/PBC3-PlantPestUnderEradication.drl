@@ -25,7 +25,7 @@ rule "Temporary catch all rule for species that are under eradication"
         $st : SensitiveTaxon()
         $zones: List()
         $map :Map()
-        eval(SensitivityZone.isInAustralia($zones))
+        eval(SensitivityZone.isInAtlasCountry($zones))
     then
         state.setLoadable(true);
         state.setControlledAccess(true);

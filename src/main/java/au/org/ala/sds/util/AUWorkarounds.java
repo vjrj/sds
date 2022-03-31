@@ -116,7 +116,7 @@ public class AUWorkarounds {
                 zones.add(zone);
 
                 if (!"AU".equals(zone.getId())) {
-                    zones.add(SensitivityZoneFactory.getZone(SensitivityZone.NOTAUS));
+                    zones.add(SensitivityZoneFactory.getZone(SensitivityZone.NOT_ATLAS_COUNTRY_CODE));
                 }
             }
         }

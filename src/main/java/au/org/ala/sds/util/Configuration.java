@@ -99,6 +99,10 @@ public class Configuration {
         return config.getProperty(field,field);
     }
 
+    public String getCountryId() { return config.getProperty("sds.country.id","AUS"); }
+
+    public String getNotCountryId() { return config.getProperty("sds.not.country.id","NOTAUS"); }
+
     public String getFlagRules(){
         return config.getProperty("sds.flag.rules","PBC7,PBC8,PBC9");
     }

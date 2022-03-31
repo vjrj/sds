@@ -29,7 +29,7 @@ public class SensitivityZoneTest {
 
     @Test
     public void isInAustralia() {
-        assertTrue(SensitivityZone.isInAustralia(SensitivityZoneFactory.getZone(SensitivityZone.NSW)));
-        assertFalse(SensitivityZone.isInAustralia(SensitivityZoneFactory.getZone(SensitivityZone.NOTAUS)));
+        assertTrue(SensitivityZone.isInAtlasCountry(SensitivityZoneFactory.getZone(SensitivityZone.NSW)));
+        assertFalse(SensitivityZone.isInAtlasCountry(SensitivityZoneFactory.getZone(SensitivityZone.NOT_ATLAS_COUNTRY_CODE)));
     }
 }

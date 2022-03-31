@@ -3,7 +3,7 @@ package au.org.ala.sds.model;
 import java.io.Serializable;
 import java.util.*;
 
-import org.apache.commons.collections.comparators.ComparableComparator;
+import au.org.ala.sds.util.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -12,8 +12,8 @@ public class SensitivityZone implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String AUS = "AUS";
-    public static final String NOTAUS = "NOTAUS";
+    public static final String ATLAS_COUNTRY_CODE = Configuration.getInstance().getCountryId();
+    public static final String NOT_ATLAS_COUNTRY_CODE = Configuration.getInstance().getNotCountryId();
     public static final String ACT = "ACT";
     public static final String NSW = "NSW";
     public static final String QLD = "QLD";
@@ -116,15 +116,15 @@ public class SensitivityZone implements Serializable {
         return "{\"name\":\"" + name + "\", \"type\":\"" + type.toString() + "\"}";
     }
 
-    public static boolean isInAustralia(SensitivityZone zone) {
+    public static boolean isInAtlasCountry(SensitivityZone zone) {
         return
-            zone == SensitivityZoneFactory.getZone(AUS) ||
+            zone == SensitivityZoneFactory.getZone(ATLAS_COUNTRY_CODE) ||
             zone.getType() == ZoneType.STATE;
     }
 
-    public static boolean isInAustralia(List<SensitivityZone> zones) {
+    public static boolean isInAtlasCountry(List<SensitivityZone> zones) {
         for (SensitivityZone zone : zones) {
-            if (zone.equals(SensitivityZoneFactory.getZone(AUS)) || zone.getType() == ZoneType.STATE) {
+            if (zone.equals(SensitivityZoneFactory.getZone(ATLAS_COUNTRY_CODE)) || zone.getType() == ZoneType.STATE) {
                 return true;
             }
         }
@@ -153,13 +153,13 @@ public class SensitivityZone implements Serializable {
         return false;
     }
 
-    public static boolean isNotInAustralia(SensitivityZone zone) {
-        return zone == null || zone.equals(SensitivityZoneFactory.getZone(NOTAUS));
+    public static boolean isNotInAtlasCountry(SensitivityZone zone) {
+        return zone == null || zone.equals(SensitivityZoneFactory.getZone(NOT_ATLAS_COUNTRY_CODE));
     }
 
-    public static boolean isNotInAustralia(List<SensitivityZone> zones) {
+    public static boolean isNotInAtlasCountry(List<SensitivityZone> zones) {
         for (SensitivityZone zone : zones) {
-            if (zone.equals(SensitivityZoneFactory.getZone(NOTAUS))) {
+            if (zone.equals(SensitivityZoneFactory.getZone(NOT_ATLAS_COUNTRY_CODE))) {
                 return true;
             }
         }
