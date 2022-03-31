@@ -35,7 +35,7 @@ end
 //        $map: Map( eval( $map.get("dataResourceUid") !=null ))
 //        //eval(this["dataResourceUid"] ! =null))
 //        // Map( eval( ($dr: this["dataResourceUid"]) !=null ))
-//        eval(SensitivityZone.isInAustralia($zones))
+//        eval(SensitivityZone.isInAtlasCountry($zones))
 //    then
 //        state.setLoadable(false);
 //        // The warning message for the submitter?
@@ -50,7 +50,7 @@ rule "In Australia"
         $zones : List()
         $st : SensitiveTaxon(name !="Bactrocera tryoni")
         $map: Map()
-        eval(SensitivityZone.isInAustralia($zones) && !SensitivityZone.isInTorresStrait($zones))
+        eval(SensitivityZone.isInAtlasCountry($zones) && !SensitivityZone.isInTorresStrait($zones))
     then
         state.setLoadable(false);
         // The warning message for the submitter?
@@ -95,7 +95,7 @@ rule "Not in Australia"
     when
         $zones : List()
         $st: SensitiveTaxon(name != "Bactrocera tryoni")
-        eval(SensitivityZone.isNotInAustralia($zones))
+        eval(SensitivityZone.isNotInAtlasCountry($zones))
     then
         state.setLoadable(true);
         state.setAnnotation(MessageFactory.getMessageText(MessageFactory.PLANT_PEST_MSG_CAT1_D1), $st.getTaxonName());

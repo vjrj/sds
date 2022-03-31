@@ -59,7 +59,7 @@ public class GeoLocationHelper {
 
         if (zones.isEmpty()) {
             logger.debug("Zone could not be determined from location: Lat " + latitude + ", Long " + longitude);
-            zones.add(SensitivityZoneFactory.getZone(SensitivityZone.NOTAUS));
+            zones.add(SensitivityZoneFactory.getZone(SensitivityZone.NOT_ATLAS_COUNTRY_CODE));
         }
         return zones;
     }

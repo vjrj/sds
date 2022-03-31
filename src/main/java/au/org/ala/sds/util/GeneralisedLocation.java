@@ -202,7 +202,7 @@ public class GeneralisedLocation {
         //this is where zones are matched to sensitive zone...
         for (SensitivityInstance si : instances) {
             if (si instanceof ConservationInstance) {
-                if (zones.contains(si.getZone()) || (si.getZone().getId().equals(SensitivityZone.AUS) && SensitivityZone.isInAustralia(zones))) {
+                if (zones.contains(si.getZone()) || (si.getZone().getId().equals(SensitivityZone.ATLAS_COUNTRY_CODE) && SensitivityZone.isInAtlasCountry(zones))) {
                     generalisation = maxGeneralisation(generalisation, ((ConservationInstance) si).getLocationGeneralisation());
                 }
             }

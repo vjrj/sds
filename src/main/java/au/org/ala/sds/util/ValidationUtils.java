@@ -42,10 +42,10 @@ public class ValidationUtils {
 
         //if country supplied add a zone for it
         if (StringUtils.isNotBlank(country)) {
-            if (country.equalsIgnoreCase(SensitivityZoneFactory.getZone(SensitivityZone.AUS).getName())) {
-                zones.add(SensitivityZoneFactory.getZone(SensitivityZone.AUS));
+            if (country.equalsIgnoreCase(SensitivityZoneFactory.getZone(SensitivityZone.ATLAS_COUNTRY_CODE).getName())) {
+                zones.add(SensitivityZoneFactory.getZone(SensitivityZone.ATLAS_COUNTRY_CODE));
             } else {
-                zones.add(SensitivityZoneFactory.getZone(SensitivityZone.NOTAUS));
+                zones.add(SensitivityZoneFactory.getZone(SensitivityZone.NOT_ATLAS_COUNTRY_CODE));
 
                 countryZone = SensitivityZoneFactory.getZoneByName(country);
                 if(countryZone != null){
